@@ -2,7 +2,7 @@
 
 export const chatbotData = [
   {
-    keywords: ["who are you", "tell me about yourself", "introduce yourself", "intro"],
+    keywords: ["who are you", "tell me about yourself", "introduce yourself", "intro","About you"],
     answer: "Hi! I am Alok Srivastav, an aspiring software developer currently pursuing my Master of Computer Applications (MCA) from GNIOT Group of Institutions, Greater Noida. I specialize in mobile app development using Flutter and backend integration with Firebase."
   },
 
@@ -332,6 +332,43 @@ export const chatbotData = [
    ],
    answer:
     "Apart from my academic studies, I actively work on practical projects involving Flutter, Firebase, Power BI, and AI technologies. This hands-on experience helps me understand real-world development challenges and continuously improve my technical skills."
+  },
+  {
+   keywords: [
+    "skills",
+    "skill",
+    "technical skills",
+    "your skills",
+    "what are your skills",
+    "what skills do you have",
+    "tech skills",
+    "technical expertise",
+    "strength in technology"
+   ],
+  answer:
+    "My technical skills include Flutter, Firebase, Dart, Java, C, C++, Python, Power BI, FastAPI, GitHub, Android Studio, VS Code, Cloud Firestore, AI Development, Data Analytics, and RAG-based AI systems. I enjoy building mobile applications, AI-powered solutions, and data-driven dashboards."
+  },
+  {
+    keywords: [
+    "internship",
+    "have you done internship",
+    "internship experience",
+    "previous internship",
+    "work experience",
+    "professional experience",
+    "did you complete any internship"
+   ],
+   answer:
+    "I have not completed a professional internship yet. However, I have gained practical experience through projects in Flutter, Firebase, AI, and Power BI. I am actively looking for internship opportunities where I can apply my skills, learn from industry professionals, and contribute to real-world projects."
+  },
+  {
+   keywords: [
+    "why no internship",
+    "no internship experience",
+    "lack of internship"
+   ],
+   answer:
+    "While I have not had the opportunity to complete an internship yet, I have focused on building practical projects and strengthening my technical skills in Flutter, Firebase, AI, and Data Analytics. I am now actively seeking internship opportunities to gain industry experience and further develop my expertise."
   },
                          
 ];
