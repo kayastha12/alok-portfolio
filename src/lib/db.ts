@@ -6,14 +6,18 @@ import { unstable_noStore as noStore } from "next/cache";
 // Helper to check if running in edge/serverless runtime
 const isEdge = typeof process === "undefined" || !process.release || process.release.name !== "node";
 
-// Robust resolver to locate Cloudflare KV binding in all Next.js serverless adapters
+// Robust resolver to locate Cloudflare KV binding dynamically (bypassing Webpack compile-time static replacement)
 function getKVNamespace() {
+  const key = "PORTFOLIO_KV";
+  const g = globalThis as any;
+  const env = (g.process?.env || (typeof process !== "undefined" ? process.env : null) || {}) as any;
+
   const candidates = [
-    (globalThis as any).PORTFOLIO_KV,
-    (process.env as any).PORTFOLIO_KV,
-    (globalThis as any).__cloudflare_env__?.PORTFOLIO_KV,
-    (globalThis as any).process?.env?.PORTFOLIO_KV,
-    (globalThis as any).context?.env?.PORTFOLIO_KV,
+    g[key],
+    env[key],
+    g.__cloudflare_env__?.[key],
+    g.context?.env?.[key],
+    g.env?.[key],
   ];
 
   for (const candidate of candidates) {
