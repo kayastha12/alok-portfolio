@@ -2,130 +2,117 @@
 
 import { motion } from "framer-motion";
 
-const experiences = [
-{
-year: "2022",
-title: "Started BCA Journey",
-desc: "Began Bachelor of Computer Applications and explored programming fundamentals.",
-},
-{
-year: "2025",
-title: "Started MCA Journey",
-desc: "Began Masters of Computer Applications and explored programming fundamentals.",
-},
-{
-year: "2025",
-title: "Data Analytics & Power BI",
-desc: "Worked on dashboards, data visualization, SQL, and business analytics concepts.",
-},
-{
-year: "2026",
-title: "AI & Machine Learning",
-desc: "Built AI-powered applications using Python, APIs, and modern AI technologies.",
-},
-{
-year: "2026",
-title: "Full Stack Development",
-desc: "Developed Flutter, Next.js, Firebase, and FastAPI based projects.",
-},
+interface ExperienceItem {
+  year: string;
+  title: string;
+  desc: string;
+}
+
+interface ExperienceProps {
+  data?: ExperienceItem[];
+}
+
+const defaultExperiences = [
+  {
+    year: "2022",
+    title: "Started BCA Journey",
+    desc: "Began Bachelor of Computer Applications and explored programming fundamentals, database schemas, and OOP concepts.",
+  },
+  {
+    year: "2025",
+    title: "Started MCA Journey",
+    desc: "Enrolled in Master of Computer Applications at GNIOT to deepen knowledge of systems design and advanced software engineering.",
+  },
+  {
+    year: "2025",
+    title: "Data Analytics & Power BI Focus",
+    desc: "Analyzed consumer and product data, writing business logic metrics (DAX) and designing executive dashboard reports.",
+  },
+  {
+    year: "2026",
+    title: "AI & Machine Learning Engineering",
+    desc: "Engineered desktop assistant automations and document search engines utilizing Gemini APIs, Python backend scripts, and FastAPI.",
+  },
+  {
+    year: "2026",
+    title: "Full Stack Development",
+    desc: "Built full-stack placement portal systems with cross-platform Dart/Flutter frontends and Cloud Firebase databases.",
+  },
 ];
 
-export default function Experience() {
-return ( <section
-   id="experience"
-   className="relative min-h-screen px-6 py-24 overflow-hidden"
- >
-{/* Background */} <div className="absolute inset-0 -z-20 bg-gradient-to-b from-black via-[#090414] to-[#2a1248]" />
+export default function Experience({ data }: ExperienceProps) {
+  const experiences = data || defaultExperiences;
 
-  {/* Stars */}
-  <div className="absolute inset-0 -z-10">
-    <div className="stars"></div>
-  </div>
-
-  {/* Purple Glow */}
-  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-purple-600/20 rounded-full blur-[220px] -z-10" />
-
-  {/* Cyan Glow */}
-  <div className="absolute top-32 left-20 w-[300px] h-[300px] bg-cyan-500/10 rounded-full blur-[150px] -z-10" />
-
-  <div className="absolute bottom-20 right-20 w-[350px] h-[350px] bg-cyan-500/10 rounded-full blur-[180px] -z-10" />
-
-  {/* Floating Dots */}
-  <div className="absolute top-32 left-24 w-3 h-3 bg-cyan-400 rounded-full blur-sm animate-pulse"></div>
-
-  <div className="absolute top-52 right-32 w-4 h-4 bg-purple-500 rounded-full blur-sm animate-pulse"></div>
-
-  <div className="absolute bottom-40 left-1/3 w-3 h-3 bg-cyan-400 rounded-full blur-sm animate-pulse"></div>
-
-  <div className="max-w-6xl mx-auto">
-    <motion.h2
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="text-center text-5xl md:text-6xl font-bold mb-24"
+  return ( 
+    <section
+      id="experience"
+      className="relative min-h-screen px-6 py-24 overflow-hidden bg-luxury-bg border-t border-luxury-border/60"
     >
-      My{" "}
-      <span className="bg-gradient-to-r from-purple-500 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
-        Journey
-      </span>
-    </motion.h2>
-
-    <div className="relative">
-      {/* Timeline Line */}
-      <div className="absolute left-4 md:left-1/2 top-0 h-full w-1 bg-gradient-to-b from-purple-500 to-cyan-400"></div>
-
-      {experiences.map((item, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: index * 0.15 }}
-          className={`
-            relative mb-16 flex
-            ${
-              index % 2 === 0
-                ? "md:justify-start"
-                : "md:justify-end"
-            }
-          `}
-        >
-          {/* Dot */}
-          <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 w-6 h-6 rounded-full bg-cyan-400 shadow-[0_0_20px_#22d3ee]"></div>
-
-          {/* Card */}
-          <div
-            className="
-              ml-14 md:ml-0
-              md:w-[45%]
-              bg-white/[0.05]
-              backdrop-blur-xl
-              border border-white/10
-              rounded-3xl
-              p-8
-              shadow-[0_0_30px_rgba(139,92,246,0.15)]
-              hover:shadow-[0_0_60px_rgba(139,92,246,0.3)]
-              transition-all
-            "
-          >
-            <span className="text-cyan-400 font-semibold">
-              {item.year}
-            </span>
-
-            <h3 className="text-2xl font-bold text-white mt-2 mb-4">
-              {item.title}
-            </h3>
-
-            <p className="text-gray-400 leading-7">
-              {item.desc}
-            </p>
+      <div className="max-w-6xl mx-auto relative z-10">
+        
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-24">
+          <div className="flex items-center justify-center gap-2 mb-3 text-luxury-accent font-bold text-xs tracking-widest uppercase">
+            <span>✦</span> Developer Journey
           </div>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</section>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-luxury-text leading-tight font-manrope">
+            Academic & Tech Timeline
+          </h2>
+        </div>
 
+        <div className="relative">
+          {/* Timeline Line */}
+          <div className="absolute left-4 md:left-1/2 top-0 h-full w-[1.5px] bg-gradient-to-b from-luxury-accent via-luxury-border to-luxury-border/30"></div>
 
-);
+          {experiences.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className={`
+                relative mb-16 flex flex-col md:flex-row
+                ${
+                  index % 2 === 0
+                    ? "md:justify-start"
+                    : "md:justify-end"
+                }
+              `}
+            >
+              {/* Dot */}
+              <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 w-4.5 h-4.5 rounded-full bg-luxury-accent border-4 border-luxury-bg shadow-[0_0_12px_rgba(36,93,102,0.25)] z-20"></div>
+
+              {/* Card */}
+              <div
+                className="
+                  ml-12 md:ml-0
+                  md:w-[45%]
+                  bg-luxury-card
+                  border border-luxury-border/60
+                  rounded-[2rem]
+                  p-8
+                  shadow-[0_8px_30px_rgba(0,0,0,0.015)]
+                  hover:border-luxury-accent/25 hover:shadow-[0_20px_50px_rgba(36,93,102,0.02)]
+                  transition-all duration-300
+                "
+              >
+                <span className="text-luxury-accent font-bold text-xs uppercase tracking-wider">
+                  {item.year}
+                </span>
+
+                <h3 className="text-xl font-bold text-luxury-text mt-2 mb-4 leading-snug font-manrope">
+                  {item.title}
+                </h3>
+
+                <p className="text-luxury-muted text-sm md:text-base leading-relaxed font-semibold">
+                  {item.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }

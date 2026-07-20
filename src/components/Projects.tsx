@@ -1,125 +1,328 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
-const projects = [
-{
-title: "AI Desktop Assistant",
-description:
-"An intelligent desktop assistant powered by AI with voice commands, automation, and smart interactions.",
-tech: "Python • Gemini API • FastAPI",
-},
-{
-title: "Placement Management System",
-description:
-"A complete Training & Placement portal for students, companies, and administrators.",
-tech: "Flutter • Firebase • Firestore",
-},
-{
-title: "Professional Dashboard",
-description:
-"An interactive Power BI dashboard that analyzes Amazon product reviews, ratings, discounts, pricing, and category-wise performance to uncover key product insights and customer trends.",
-tech: "Power BI",
-},
+interface Project {
+  title: string;
+  description: string;
+  longDescription: string;
+  tech: string[];
+  features: string[];
+  demoUrl: string;
+  githubUrl: string;
+  featured?: boolean;
+  order?: number;
+  image?: string;
+}
+
+interface ProjectsProps {
+  data?: Project[];
+}
+
+const defaultProjects: Project[] = [
+  {
+    title: "AI Desktop Assistant",
+    description: "An intelligent helper powered by Gemini API, executing voice actions and script triggers.",
+    longDescription: "A comprehensive voice-activated AI companion that runs locally on Windows. It listens to audio triggers, interprets commands using Gemini's model, and performs desktop tasks like opening files, executing shell scripts, searching directories, or automating system configurations. Built on FastAPI for lightning-fast router responses.",
+    tech: ["Python", "Gemini API", "FastAPI", "SpeechRecognition"],
+    features: [
+      "Voice activation and live transcription",
+      "System automation (shell script execution, directory searches)",
+      "Open API endpoints managed through FastAPI",
+      "Robust offline error-handling layers"
+    ],
+    demoUrl: "#contact",
+    githubUrl: "https://github.com"
+  },
+  {
+    title: "Amazon Reviews Dashboard",
+    description: "Interactive dashboard highlighting consumer insights and rating margins.",
+    longDescription: "An enterprise-grade Power BI business intelligence dashboard analyzing product listings on Amazon. It transforms raw product data (ratings, categories, discounts, reviews) into clear visualizations to identify product trends, pricing elasticities, and satisfaction scores. Built with custom DAX logic metrics.",
+    tech: ["Power BI Desktop", "DAX logic", "Data ETL & Analytics", "SQL Server"],
+    features: [
+      "Dynamic interactive filters and KPI headers",
+      "Data cleaning and modeling in Power Query",
+      "DAX expressions for margin calculation and trend vectors",
+      "Clean executive reporting layout"
+    ],
+    demoUrl: "#contact",
+    githubUrl: "https://github.com"
+  },
+  {
+    title: "Placement Portal",
+    description: "Role-based training and placement application with Firestore sync.",
+    longDescription: "A role-based university portal managing training and campus drives. Built for students, training coordinators, and recruiting partners. It coordinates job announcements, profile registrations, application status updates, and interview notifications with real-time Firebase Firestore data synchronization.",
+    tech: ["Flutter & Dart", "Google Firebase", "Cloud Firestore", "Cloud Messaging"],
+    features: [
+      "Role-based authentication (Admin, Recruiter, Student)",
+      "Real-time applicant progress and scheduling tracking",
+      "Instant push notifications via Cloud Messaging",
+      "Downloadable resume and document repository"
+    ],
+    demoUrl: "#contact",
+    githubUrl: "https://github.com"
+  },
+  {
+    title: "Online Voting System (OVS)",
+    description: "Secure cross-platform voting platform utilizing robust authentication.",
+    longDescription: "A secure mobile voting application built on Flutter. It provides voters with simple verification, active election dashboards, candidate profile views, and secure ballot submissions. Powered by Firebase cloud authentication to protect integrity.",
+    tech: ["Flutter & Dart", "Firebase Auth", "Cloud Firestore", "Security Rules"],
+    features: [
+      "Multi-factor voter credentials verification",
+      "Real-time vote counts and audit logs",
+      "Completely responsive mobile design layouts",
+      "Tamper-proof backend rules configured on Firestore"
+    ],
+    demoUrl: "#contact",
+    githubUrl: "https://github.com"
+  }
 ];
 
-export default function Projects() {
-return ( <section
-   id="projects"
-   className="relative min-h-screen px-6 py-24 overflow-hidden"
- >
-{/* Background */} <div className="absolute inset-0 -z-20 bg-gradient-to-b from-black via-[#070311] to-[#1b0d34]" />
+export default function Projects({ data }: ProjectsProps) {
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
+  
+  // Sort projects by order key
+  const projects = (data || defaultProjects).sort((a, b) => (a.order || 0) - (b.order || 0));
 
+  const handleProjectClick = (project: Project) => {
+    setActiveProject(project);
+  };
 
-  {/* Stars */}
-  <div className="absolute inset-0 -z-10">
-    <div className="stars"></div>
-  </div>
-
-  {/* Purple Glow */}
-  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-purple-600/20 rounded-full blur-[220px] -z-10" />
-
-  {/* Cyan Glow */}
-  <div className="absolute top-40 left-10 w-[300px] h-[300px] bg-cyan-500/10 rounded-full blur-[150px] -z-10" />
-
-  <div className="absolute bottom-40 right-10 w-[350px] h-[350px] bg-cyan-500/10 rounded-full blur-[180px] -z-10" />
-
-  {/* Floating Dots */}
-  <div className="absolute top-32 left-20 w-3 h-3 bg-cyan-400 rounded-full blur-sm animate-pulse" />
-
-  <div className="absolute top-52 right-32 w-4 h-4 bg-purple-500 rounded-full blur-sm animate-pulse" />
-
-  <div className="absolute bottom-32 left-1/3 w-3 h-3 bg-cyan-400 rounded-full blur-sm animate-pulse" />
-
-  <div className="max-w-7xl mx-auto">
-    <motion.h2
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="text-center text-5xl md:text-6xl font-bold mb-20"
+  return (
+    <section
+      id="projects"
+      className="relative min-h-screen px-6 py-24 overflow-hidden bg-luxury-bg border-t border-luxury-border/60"
     >
-      My{" "}
-      <span className="bg-gradient-to-r from-purple-500 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
-        Projects
-      </span>
-    </motion.h2>
-
-    <div className="grid md:grid-cols-3 gap-8">
-      {projects.map((project, index) => (
-        <motion.div
-          key={index}
-          whileHover={{
-            y: -12,
-            scale: 1.03,
-          }}
-          transition={{ duration: 0.3 }}
-          className="
-            relative
-            overflow-hidden
-            rounded-3xl
-            border border-white/10
-            bg-white/[0.04]
-            backdrop-blur-xl
-            p-8
-            shadow-[0_0_30px_rgba(139,92,246,0.15)]
-            hover:shadow-[0_0_60px_rgba(139,92,246,0.35)]
-            transition-all
-          "
-        >
-          {/* Card Glow */}
-          <div className="absolute -top-20 -right-20 w-40 h-40 bg-cyan-400/20 rounded-full blur-3xl" />
-
-          <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl" />
-
-          <div className="relative z-10">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              {project.title}
-            </h3>
-
-            <p className="text-gray-400 leading-7 mb-6">
-              {project.description}
-            </p>
-
-            <p className="text-cyan-400 text-sm mb-8">
-              {project.tech}
-            </p>
-
-            <div className="flex gap-3">
-              <button className="px-5 py-2 rounded-full bg-gradient-to-r from-purple-600 to-violet-500 text-white font-medium">
-                GitHub
-              </button>
-
-              <button className="px-5 py-2 rounded-full bg-gradient-to-r from-cyan-400 to-sky-400 text-black font-semibold">
-                Live Demo
-              </button>
-            </div>
+      <div className="max-w-7xl mx-auto relative z-10">
+        
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-20">
+          <div className="flex items-center justify-center gap-2 mb-3 text-luxury-accent font-bold text-xs tracking-widest uppercase">
+            <span>✦</span> Showcase Cards
           </div>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</section>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-luxury-text leading-tight font-manrope">
+            Featured Projects
+          </h2>
+          <p className="text-luxury-muted mt-4 text-sm md:text-base leading-relaxed font-semibold">
+            Explore case studies of software architectures, machine learning automation, and data analytics.
+          </p>
+        </div>
 
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -8 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => handleProjectClick(project)}
+              className="
+                relative flex flex-col justify-between
+                overflow-hidden
+                rounded-[2.5rem]
+                border border-luxury-border/60
+                bg-luxury-card
+                p-8
+                shadow-[0_12px_45px_rgba(0,0,0,0.015)]
+                hover:border-luxury-accent/25 hover:shadow-[0_20px_50px_rgba(36,93,102,0.03)]
+                transition-all duration-300
+                cursor-pointer
+                h-full flex flex-col justify-between
+              "
+            >
+              <div>
+                {project.image && (
+                  <div className="relative w-full h-[180px] rounded-[1.5rem] overflow-hidden mb-6 bg-luxury-bg border border-luxury-border/30">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                )}
+                {/* Tech Tags & Links Row */}
+                <div className="flex justify-between items-start mb-6">
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.slice(0, 3).map((t, idx) => (
+                      <span 
+                        key={idx} 
+                        className="px-3.5 py-1.5 rounded-full bg-luxury-bg border border-luxury-border text-[10px] font-bold text-luxury-text"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                    {project.tech.length > 3 && (
+                      <span className="px-3.5 py-1.5 rounded-full bg-luxury-bg border border-luxury-border text-[10px] font-bold text-luxury-text">
+                        +{project.tech.length - 3}
+                      </span>
+                    )}
+                  </div>
 
-);
+                  <div className="flex gap-2">
+                    {project.githubUrl && project.githubUrl !== "" && project.githubUrl !== "#contact" && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-2 rounded-xl bg-luxury-bg border border-luxury-border text-luxury-text hover:text-luxury-accent hover:border-luxury-accent/30 transition-colors"
+                        title="GitHub Repository Link"
+                      >
+                        <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                      </a>
+                    )}
+
+                    {project.demoUrl && project.demoUrl !== "" && project.demoUrl !== "#contact" && (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-2 rounded-xl bg-luxury-bg border border-luxury-border text-luxury-text hover:text-luxury-accent hover:border-luxury-accent/30 transition-colors"
+                        title="Live Demo Link"
+                      >
+                        <svg className="w-3.5 h-3.5 stroke-current fill-none" strokeWidth="2.5" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                {/* Title & Description */}
+                <h3 className="text-2xl font-extrabold text-luxury-text mb-4 leading-snug font-manrope">
+                  {project.title}
+                </h3>
+
+                <p className="text-luxury-muted text-sm md:text-base leading-relaxed font-semibold">
+                  {project.description}
+                </p>
+              </div>
+
+              {/* Interaction prompt */}
+              <div className="flex items-center justify-between pt-6 border-t border-luxury-border/60 text-xs font-bold text-luxury-accent group">
+                <span>View Project Case</span>
+                <div className="w-6 h-6 rounded-full bg-luxury-bg border border-luxury-border/80 flex items-center justify-center group-hover:bg-luxury-accent group-hover:text-white transition-colors duration-300">
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Case Study Modal Overlay */}
+      <AnimatePresence>
+        {activeProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-luxury-text/20 backdrop-blur-sm z-50 flex items-center justify-center p-4 md:p-6"
+            onClick={() => setActiveProject(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 20 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="bg-luxury-card border border-luxury-border max-w-2xl w-full rounded-[2.5rem] p-8 md:p-10 shadow-2xl relative max-h-[85vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setActiveProject(null)}
+                className="absolute top-6 right-6 w-9 h-9 rounded-full bg-luxury-bg border border-luxury-border/80 flex items-center justify-center hover:bg-luxury-hover transition-colors text-luxury-text"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* Title & Tag */}
+              <span className="text-[10px] font-bold text-luxury-accent uppercase tracking-widest block mb-2">
+                Project Case Study
+              </span>
+              <h3 className="text-3xl font-extrabold text-luxury-text mb-6 font-manrope">
+                {activeProject.title}
+              </h3>
+
+              {/* Long Description */}
+              <p className="text-luxury-muted leading-relaxed font-semibold text-sm md:text-base mb-8">
+                {activeProject.longDescription}
+              </p>
+
+              {/* Key Features */}
+              {activeProject.features && activeProject.features.length > 0 && (
+                <div className="mb-8">
+                  <h4 className="text-xs font-bold text-luxury-text uppercase tracking-wider mb-4">
+                    Key Technical Features
+                  </h4>
+                  <div className="grid gap-3">
+                    {activeProject.features.map((f, i) => (
+                      <div key={i} className="flex gap-3 items-start text-sm">
+                        <span className="w-1.5 h-1.5 rounded-full bg-luxury-accent mt-2 flex-shrink-0"></span>
+                        <span className="text-luxury-muted font-semibold">{f}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Tech Stack List */}
+              <div className="mb-8">
+                <h4 className="text-xs font-bold text-luxury-text uppercase tracking-wider mb-3">
+                  Stack & Toolkits
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {activeProject.tech.map((t, idx) => (
+                    <span 
+                      key={idx} 
+                      className="px-3.5 py-1.5 rounded-full bg-luxury-bg border border-luxury-border text-xs font-bold text-luxury-text"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Actions */}
+              <div className="flex gap-4 border-t border-luxury-border/60 pt-6 mt-8">
+                {activeProject.githubUrl && activeProject.githubUrl !== "" && (
+                  <a
+                    href={activeProject.githubUrl}
+                    target="_blank"
+                    className="flex-1 text-center py-3 rounded-full bg-luxury-card border border-luxury-border text-luxury-text font-bold text-xs md:text-sm hover:bg-luxury-hover transition-colors"
+                  >
+                    GitHub Source
+                  </a>
+                )}
+
+                {activeProject.demoUrl && activeProject.demoUrl !== "" && (
+                  <a
+                    href={activeProject.demoUrl}
+                    target="_blank"
+                    className="flex-1 text-center py-3 rounded-full bg-luxury-accent text-white font-black text-xs md:text-sm hover:bg-luxury-accent-hover transition-colors shadow-sm"
+                  >
+                    {activeProject.demoUrl !== "#contact" ? "Live Project" : "Request Demo"}
+                  </a>
+                )}
+              </div>
+
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
 }

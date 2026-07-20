@@ -1,0 +1,399 @@
+{
+  "admin": {
+    "email": "admin@alok.com",
+    "passwordHash": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9"
+  },
+  "hero": {
+    "badgeText": "Available for new opportunities",
+    "greeting": "Hello,",
+    "name": "Alok ",
+    "roles": [
+      "AI Engineer",
+      "Data Analyst",
+      "Full Stack Developer"
+    ],
+    "description": "Helping organizations engineer intelligent systems, deploy custom voice automation agents, and design rich Power BI dashboards that translate raw data into business intelligence.",
+    "viewWorkText": "View My Work",
+    "downloadResumeText": "Download Resume",
+    "photo": {
+      "src": "/profile_suit_transparent.png",
+      "scale": 1.25,
+      "positionY": 60,
+      "opacity": 0.88,
+      "contrast": 1.08,
+      "brightness": 0.96,
+      "saturate": 1.05
+    },
+    "background": {
+      "curvesVisible": true,
+      "glowCyan": true,
+      "glowPurple": true
+    }
+  },
+  "about": {
+    "badgeText": "About Me",
+    "heading": "Architecting Intelligent Solutions",
+    "paragraph1": "I am a dedicated MCA student at GNIOT Group of Institutions, Greater Noida, with a strong foundation in computer applications (BCA from MGKVP, Varanasi). I specialize in developing cross-platform mobile applications using Flutter and implementing reliable backend solutions with Firebase.",
+    "paragraph2": "My technical focus is at the intersection of AI integration and Data Analytics. I build intelligent helpers powered by LLM endpoints, deploy custom voice automation agents, and transform transactional databases into business intelligence reporting systems using Power BI Desktop and advanced DAX modeling.",
+    "highlightText": "Combining mobile engineering, machine learning pipelines, and data visualization to construct reliable digital products.",
+    "avatarSrc": "/profile.jpg"
+  },
+  "whyChoose": {
+    "badge": "Philosophy",
+    "title": "Engineering with Purpose",
+    "items": [
+      {
+        "title": "GenAI & Voice Integration",
+        "description": "Building next-generation workflows utilizing LLM API integrations, custom local assistants, and speech transcription layers."
+      },
+      {
+        "title": "Business Intelligence & ETL",
+        "description": "Designing clean dashboard layouts and enterprise analytics reports backed by robust data transformations."
+      },
+      {
+        "title": "Secure Microservices",
+        "description": "Architecting reliable, scalable backend routes using Firebase rules, Firestore synchronization, and FastAPI endpoints."
+      }
+    ]
+  },
+  "skills": [
+    {
+      "title": "AI & Machine Learning",
+      "description": "Developing automated voice systems, generative agents, and document search tools.",
+      "skills": [
+        "Python",
+        "Gemini API",
+        "RAG Pipelines",
+        "FastAPI API"
+      ],
+      "icon": "AI"
+    },
+    {
+      "title": "Data Analytics & BI",
+      "description": "Transforming transactional datasets into clean, actionable interactive dashboard layouts.",
+      "skills": [
+        "Power BI",
+        "DAX calculations",
+        "SQL Queries",
+        "Data Modeling"
+      ],
+      "icon": "Analytics"
+    },
+    {
+      "title": "Mobile & Web",
+      "description": "Building responsive, modern products featuring cross-platform components and fast loads.",
+      "skills": [
+        "Flutter & Dart",
+        "Next.js & React",
+        "Tailwind CSS",
+        "Firebase UI"
+      ],
+      "icon": "Mobile"
+    },
+    {
+      "title": "Databases & API",
+      "description": "Architecting backend microservices and databases configured to maximize speed.",
+      "skills": [
+        "Cloud Firestore",
+        "SQL Server",
+        "FastAPI Router",
+        "REST endpoints"
+      ],
+      "icon": "Database"
+    },
+    {
+      "title": "Developer Tools",
+      "description": "Managing project source codes, testing apps, and compiling systems.",
+      "skills": [
+        "Git & GitHub",
+        "PyCharm & VS Code",
+        "Android Studio",
+        "Firebase Auth"
+      ],
+      "icon": "Tools"
+    }
+  ],
+  "projects": [
+    {
+      "title": "AI Desktop Assistant",
+      "description": "An intelligent helper powered by Gemini API, executing voice actions and script triggers.",
+      "longDescription": "A comprehensive voice-activated AI companion that runs locally on Windows. It listens to audio triggers, interprets commands using Gemini's model, and performs desktop tasks like opening files, executing shell scripts, searching directories, or automating system configurations. Built on FastAPI for lightning-fast router responses.",
+      "tech": [
+        "Python",
+        "Gemini API",
+        "FastAPI",
+        "SpeechRecognition"
+      ],
+      "features": [
+        "Voice activation and live transcription",
+        "System automation (shell script execution, directory searches)",
+        "Open API endpoints managed through FastAPI",
+        "Robust offline error-handling layers"
+      ],
+      "demoUrl": "",
+      "githubUrl": "https://github.com",
+      "image": "",
+      "category": "Artificial Intelligence",
+      "featured": true,
+      "order": 1,
+      "buttonText": "View Details"
+    },
+    {
+      "title": "Amazon Reviews Dashboard",
+      "description": "Interactive dashboard highlighting consumer insights and rating margins.",
+      "longDescription": "An enterprise-grade Power BI business intelligence dashboard analyzing product listings on Amazon. It transforms raw product data (ratings, categories, discounts, reviews) into clear visualizations to identify product trends, pricing elasticities, and satisfaction scores. Built with custom DAX logic metrics.",
+      "tech": [
+        "Power BI Desktop",
+        "DAX logic",
+        "Data ETL & Analytics",
+        "SQL Server"
+      ],
+      "features": [
+        "Dynamic interactive filters and KPI headers",
+        "Data cleaning and modeling in Power Query",
+        "DAX expressions for margin calculation and trend vectors",
+        "Clean executive reporting layout"
+      ],
+      "demoUrl": "#contact",
+      "githubUrl": "https://github.com",
+      "image": "",
+      "category": "Data Analytics",
+      "featured": true,
+      "order": 2,
+      "buttonText": "View Details"
+    },
+    {
+      "title": "Placement Portal",
+      "description": "Role-based training and placement application with Firestore sync.",
+      "longDescription": "A role-based university portal managing training and campus drives. Built for students, training coordinators, and recruiting partners. It coordinates job announcements, profile registrations, application status updates, and interview notifications with real-time Firebase Firestore data synchronization.",
+      "tech": [
+        "Flutter & Dart",
+        "Google Firebase",
+        "Cloud Firestore",
+        "Cloud Messaging"
+      ],
+      "features": [
+        "Role-based authentication (Admin, Recruiter, Student)",
+        "Real-time applicant progress and scheduling tracking",
+        "Instant push notifications via Cloud Messaging",
+        "Downloadable resume and document repository"
+      ],
+      "demoUrl": "#contact",
+      "githubUrl": "https://github.com",
+      "image": "",
+      "category": "Mobile App",
+      "featured": true,
+      "order": 3,
+      "buttonText": "View Details"
+    },
+    {
+      "title": "Online Voting System (OVS)",
+      "description": "Secure cross-platform voting platform utilizing robust authentication.",
+      "longDescription": "A secure mobile voting application built on Flutter. It provides voters with simple verification, active election dashboards, candidate profile views, and secure ballot submissions. Powered by Firebase cloud authentication to protect integrity.",
+      "tech": [
+        "Flutter & Dart",
+        "Firebase Auth",
+        "Cloud Firestore",
+        "Security Rules"
+      ],
+      "features": [
+        "Multi-factor voter credentials verification",
+        "Real-time vote counts and audit logs",
+        "Completely responsive mobile design layouts",
+        "Tamper-proof backend rules configured on Firestore"
+      ],
+      "demoUrl": "#contact",
+      "githubUrl": "https://github.com",
+      "image": "",
+      "category": "Mobile App",
+      "featured": true,
+      "order": 4,
+      "buttonText": "View Details"
+    }
+  ],
+  "experience": [
+    {
+      "year": "2022",
+      "title": "Started BCA Journey",
+      "desc": "Began Bachelor of Computer Applications and explored programming fundamentals, database schemas, and OOP concepts."
+    },
+    {
+      "year": "2025",
+      "title": "Started MCA Journey",
+      "desc": "Enrolled in Master of Computer Applications at GNIOT to deepen knowledge of systems design and advanced software engineering."
+    },
+    {
+      "year": "2025",
+      "title": "Data Analytics & Power BI Focus",
+      "desc": "Analyzed consumer and product data, writing business logic metrics (DAX) and designing executive dashboard reports."
+    },
+    {
+      "year": "2026",
+      "title": "AI & Machine Learning Engineering",
+      "desc": "Engineered desktop assistant automations and document search engines utilizing Gemini APIs, Python backend scripts, and FastAPI."
+    },
+    {
+      "year": "2026",
+      "title": "Full Stack Development",
+      "desc": "Built full-stack placement portal systems with cross-platform Dart/Flutter frontends and Cloud Firebase databases."
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Alok demonstrates high integrity, sharp analytical capabilities, and quick execution when building integrations.",
+      "author": "Academic Project Lead",
+      "role": "Coordinator",
+      "company": "MCA Department"
+    },
+    {
+      "quote": "His automation systems and Power BI dashboards turned raw data files into clear visual logic very efficiently.",
+      "author": "Intern Supervisor",
+      "role": "Senior Consultant",
+      "company": "Tech Solutions Corp"
+    }
+  ],
+  "contact": {
+    "email": "aloksrivastav489@gmail.com",
+    "phone": "+91-9151519662",
+    "location": "Varanasi / Greater Noida, India",
+    "whatsapp": "9151519662",
+    "linkedin": "https://www.linkedin.com/in/alok-srivastav-03b17a33b",
+    "github": "https://github.com",
+    "availability": "Ready to join immediately"
+  },
+  "stats": {
+    "projects": "10+",
+    "experience": "2+",
+    "dashboards": "5+",
+    "certifications": "3+"
+  },
+  "chatbot": [
+    {
+      "keywords": [
+        "who are you",
+        "tell me about yourself",
+        "introduce yourself",
+        "intro",
+        "About you"
+      ],
+      "answer": "Hi! I am Alok Srivastav, an aspiring software developer currently pursuing my Master of Computer Applications (MCA) from GNIOT Group of Institutions, Greater Noida. I specialize in mobile app development using Flutter and backend integration with Firebase."
+    },
+    {
+      "keywords": [
+        "education",
+        "educational background",
+        "qualification",
+        "college",
+        "university"
+      ],
+      "answer": "I am currently pursuing my MCA (2025-2027) from Dr. A.P.J. Abdul Kalam Technical University at GNIOT, Greater Noida. Before this, I completed my BCA from Mahatma Gandhi Kashi Vidyapeeth University, Varanasi in 2025. I did my schooling from St. Thomas Inter College."
+    },
+    {
+      "keywords": [
+        "where are you from",
+        "location",
+        "hometown"
+      ],
+      "answer": "I am originally from Varanasi, Uttar Pradesh, and currently based in Greater Noida for my education."
+    },
+    {
+      "keywords": [
+        "job",
+        "role",
+        "opportunity",
+        "looking for"
+      ],
+      "answer": "I am actively seeking internship or entry-level opportunities in the IT industry, specifically Flutter Developer, Mobile Application Engineer, or Software Development Engineer roles."
+    },
+    {
+      "keywords": [
+        "why chatbot",
+        "portfolio chatbot"
+      ],
+      "answer": "I built this chatbot to demonstrate my ability to design interactive systems and provide recruiters with an engaging way to learn about my background, skills, and projects."
+    },
+    {
+      "keywords": [
+        "contact",
+        "reach you",
+        "email",
+        "phone"
+      ],
+      "answer": "📧 Email: aloksrivastav489@gmail.com | 📱 Phone: +91-9151519662 | 💼 LinkedIn: linkedin.com/in/alok-srivastav-03b17a33b"
+    },
+    {
+      "keywords": [
+        "summary",
+        "professional profile"
+      ],
+      "answer": "I am a motivated MCA student with hands-on experience in software development, Flutter, Firebase, and academic projects focused on solving real-world problems."
+    },
+    {
+      "keywords": [
+        "relocate",
+        "relocation"
+      ],
+      "answer": "Yes, I am open to relocation and excited to explore career opportunities in different locations."
+    },
+    {
+      "keywords": [
+        "programming languages",
+        "languages",
+        "coding languages"
+      ],
+      "answer": "My programming language toolkit includes C, C++, Java, and Dart."
+    },
+    {
+      "keywords": [
+        "frameworks",
+        "technologies",
+        "tech stack"
+      ],
+      "answer": "I am highly proficient in Flutter for cross-platform mobile development and Firebase for backend services."
+    },
+    {
+      "keywords": [
+        "developer tools",
+        "tools",
+        "ide"
+      ],
+      "answer": "I frequently use GitHub, Visual Studio Code, Android Studio, and other development tools."
+    },
+    {
+      "keywords": [
+        "database",
+        "backend"
+      ],
+      "answer": "I have experience setting up and securing Cloud Firebase Firestore collections, designing standard schema rules, and writing relational SQL Server schemas."
+    }
+  ],
+  "seo": {
+    "title": "Alok Srivastav | AI & Data Developer Portfolio",
+    "description": "Personal portfolio of Alok Srivastav, specializing in Artificial Intelligence engineering, Data Analytics solutions, and Full Stack development.",
+    "keywords": [
+      "Alok Srivastav",
+      "AI Engineer",
+      "Data Analyst",
+      "Full Stack Developer",
+      "Flutter Developer",
+      "MCA Graduate",
+      "GNIOT",
+      "Portfolio"
+    ],
+    "ogImage": "/profile.jpg",
+    "favicon": "/favicon.ico",
+    "googleAnalytics": ""
+  },
+  "settings": {
+    "primaryColor": "#060C0D",
+    "accentColor": "#206F7A",
+    "accentHoverColor": "#16535C",
+    "fonts": {
+      "heading": "Manrope",
+      "body": "Inter"
+    },
+    "animationSpeed": 0.5,
+    "glowsEnabled": true,
+    "particlesEnabled": true
+  }
+}

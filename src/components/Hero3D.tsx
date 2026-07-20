@@ -14,58 +14,48 @@ function AnimatedSphere() {
   const sphereRef = useRef<THREE.Mesh>(null);
 
   useFrame(({ pointer }) => {
-  if (!sphereRef.current) return;
+    if (!sphereRef.current) return;
 
-  sphereRef.current.position.x = pointer.x * 4;
-  sphereRef.current.position.y = pointer.y * 3;
-
-  sphereRef.current.rotation.y += 0.01;
-});
+    sphereRef.current.position.x = pointer.x * 3;
+    sphereRef.current.position.y = pointer.y * 2;
+    sphereRef.current.rotation.y += 0.005;
+  });
 
   return (
-  <Sphere
-    ref={sphereRef}
-    args={[1, 64, 64]}
-    scale={1.5}
-  >
-    <MeshDistortMaterial
-      color="#8b5cf6"
-      distort={0.35}
-      speed={2}
-      roughness={0}
-    />
-  </Sphere>
-);
+    <Sphere
+      ref={sphereRef}
+      args={[1, 64, 64]}
+      scale={1.4}
+    >
+      <MeshDistortMaterial
+        color="#245D66"
+        distort={0.4}
+        speed={1.5}
+        roughness={0.1}
+        metalness={0.2}
+      />
+    </Sphere>
+  );
 }
 
 export default function Hero3D() {
   return (
-    <div className="absolute inset-0 z-0">
+    <div className="absolute inset-0 z-0 opacity-25">
       <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
-        <ambientLight intensity={1.5} />
+        <ambientLight intensity={1} />
 
         <directionalLight
           position={[2, 2, 2]}
-          intensity={2}
+          intensity={1.5}
         />
 
         <pointLight
           position={[0, 0, 3]}
-          intensity={4}
-          color="#8b5cf6"
+          intensity={3}
+          color="#245D66"
         />
 
         <AnimatedSphere />
-
-        <Stars
-          radius={100}
-          depth={50}
-          count={2500}
-          factor={4}
-          saturation={0}
-          fade
-          speed={1}
-        />
       </Canvas>
     </div>
   );

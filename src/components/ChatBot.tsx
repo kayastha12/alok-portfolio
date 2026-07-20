@@ -1,10 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { chatbotData } from "@/Data/chatbotData";
 
-export default function ChatBot() {
+interface ChatBotItem {
+  keywords: string[];
+  answer: string;
+}
+
+interface ChatBotProps {
+  data?: ChatBotItem[];
+}
+
+export default function ChatBot({ data }: ChatBotProps) {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const handleToggle = () => setOpen((prev) => !prev);
+    window.addEventListener("toggle-chatbot", handleToggle);
+    return () => window.removeEventListener("toggle-chatbot", handleToggle);
+  }, []);
 
   const [messages, setMessages] = useState<
     { text: string; sender: "user" | "bot" }[]
@@ -19,8 +34,9 @@ export default function ChatBot() {
 
   const getResponse = (msg: string) => {
     const query = msg.toLowerCase();
+    const activeQA = data || chatbotData;
 
-    const match = chatbotData.find((item) =>
+    const match = activeQA.find((item) =>
       item.keywords.some((keyword) =>
         query.includes(keyword.toLowerCase())
       )
@@ -70,34 +86,15 @@ Try asking:
 
   return (
     <>
-      {/* Floating AI Button */}
-      <button
-        id="chatbot-toggle"
-        onClick={() => setOpen(!open)}
-        className="
-          fixed bottom-6 right-6 z-50
-          w-16 h-16 rounded-full
-          bg-gradient-to-r
-          from-purple-600
-          to-cyan-400
-          text-white text-2xl
-          shadow-[0_0_35px_rgba(139,92,246,0.6)]
-          hover:scale-110
-          transition-all
-        "
-      >
-        AI
-      </button>
-
       {/* Chat Window */}
       {open && (
         <div
           className="
             fixed bottom-24 right-6
             w-[350px] h-[550px]
-            bg-[#0b0b0b]
-            border border-white/10
-            rounded-3xl
+            bg-luxury-card
+            border border-luxury-border
+            rounded-[2.5rem]
             z-50
             flex flex-col
             overflow-hidden
@@ -105,17 +102,17 @@ Try asking:
           "
         >
           {/* Header */}
-          <div className="p-4 border-b border-white/10 bg-gradient-to-r from-purple-600/20 to-cyan-400/20">
-            <h3 className="font-bold text-white text-lg">
-              🤖 Ask AI About Alok
+          <div className="p-5 border-b border-luxury-border/60 bg-luxury-bg">
+            <h3 className="font-extrabold text-luxury-text text-base flex items-center gap-1.5 font-manrope">
+              <span>🤖</span> Ask AI About Alok
             </h3>
-            <p className="text-xs text-gray-400 mt-1">
-              Portfolio Assistant
+            <p className="text-xs text-luxury-muted mt-0.5 font-semibold">
+              Portfolio Chatbot Assistant
             </p>
           </div>
 
           {/* Quick Suggestions */}
-          <div className="px-3 pt-3 flex flex-wrap gap-2">
+          <div className="px-4 pt-4 flex flex-wrap gap-2">
             {[
               "About Alok",
               "Education",
@@ -128,14 +125,15 @@ Try asking:
                 key={item}
                 onClick={() => setInput(item)}
                 className="
-                  px-3 py-1
+                  px-3.5 py-1.5
                   rounded-full
-                  bg-white/10
+                  bg-luxury-bg
+                  border border-luxury-border
                   text-xs
-                  text-white
-                  hover:bg-cyan-400
-                  hover:text-black
-                  transition
+                  text-luxury-text
+                  hover:bg-luxury-accent
+                  hover:text-white
+                  transition duration-200
                 "
               >
                 {item}
@@ -144,14 +142,14 @@ Try asking:
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3.5">
             {messages.map((m, i) => (
               <div
                 key={i}
-                className={`p-3 rounded-2xl max-w-[85%] whitespace-pre-line ${
+                className={`p-3.5 rounded-2xl max-w-[85%] whitespace-pre-line text-sm leading-relaxed ${
                   m.sender === "user"
-                    ? "bg-cyan-400 text-black ml-auto"
-                    : "bg-white/10 text-white"
+                    ? "bg-luxury-accent text-white ml-auto font-medium rounded-tr-none"
+                    : "bg-luxury-bg text-luxury-text rounded-tl-none border border-luxury-border/60"
                 }`}
               >
                 {m.text}
@@ -160,7 +158,7 @@ Try asking:
           </div>
 
           {/* Input */}
-          <div className="p-3 flex gap-2 border-t border-white/10">
+          <div className="p-3 flex gap-2 border-t border-luxury-border bg-luxury-card">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -174,11 +172,12 @@ Try asking:
                 flex-1
                 p-3
                 rounded-xl
-                bg-black
-                text-white
-                border border-white/10
+                bg-luxury-input
+                text-luxury-text
+                text-sm
+                border border-luxury-border
                 outline-none
-                focus:border-cyan-400
+                focus:border-luxury-accent/30
               "
             />
 
@@ -187,11 +186,12 @@ Try asking:
               className="
                 px-4
                 rounded-xl
-                bg-cyan-400
-                text-black
-                font-semibold
-                hover:scale-105
-                transition
+                bg-luxury-accent
+                text-white
+                font-bold
+                text-sm
+                hover:bg-luxury-accent-hover hover:scale-103
+                transition-all duration-200
               "
             >
               Send
@@ -202,4 +202,3 @@ Try asking:
     </>
   );
 }
-

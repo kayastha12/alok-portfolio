@@ -2,113 +2,114 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-export default function About() {
+
+interface AboutProps {
+  data?: {
+    badgeText: string;
+    heading: string;
+    paragraph1: string;
+    paragraph2: string;
+    highlightText: string;
+    avatarSrc: string;
+  };
+}
+
+export default function About({ data }: AboutProps) {
+  const badgeText = data?.badgeText || "About Me";
+  const heading = data?.heading || "Architecting Intelligent Solutions";
+  const paragraph1 = data?.paragraph1 || "I am a dedicated MCA student at GNIOT Group of Institutions, Greater Noida, with a strong foundation in computer applications (BCA from MGKVP, Varanasi). I specialize in developing cross-platform mobile applications using Flutter and implementing reliable backend solutions with Firebase.";
+  const paragraph2 = data?.paragraph2 || "My technical focus is at the intersection of AI integration and Data Analytics. I build intelligent helpers powered by LLM endpoints, deploy custom voice automation agents, and transform transactional databases into business intelligence reporting systems using Power BI Desktop and advanced DAX modeling.";
+  const highlightText = data?.highlightText || "Combining mobile engineering, machine learning pipelines, and data visualization to construct reliable digital products.";
+  const avatarSrc = data?.avatarSrc || "/profile.jpg";
+
   return (
     <section
-  id="about"
-  className="relative min-h-screen flex items-center justify-center px-6 py-24 -mt-20 overflow-hidden"
+      id="about"
+      className="relative min-h-screen flex items-center justify-center px-6 py-24 overflow-hidden bg-luxury-bg border-t border-luxury-border/60"
     >
-      {/* Stars Background */}
-      <div className="absolute inset-0 z-0">
-        <div className="stars"></div>
-
-        <div className="absolute top-20 left-20 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px]" />
-
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-500/20 rounded-full blur-[120px]" />
-
-        <div className="absolute top-1/2 left-1/2 w-[500px] h-[500px] -translate-x-1/2 -translate-y-1/2 bg-violet-500/10 rounded-full blur-[150px]" />
-      </div>
-
-      {/* Floating Dots */}
-      <div className="absolute top-32 left-24 w-3 h-3 bg-cyan-400 rounded-full blur-sm animate-pulse z-10" />
-
-      <div className="absolute bottom-40 right-32 w-4 h-4 bg-purple-500 rounded-full blur-sm animate-pulse z-10" />
-
-      {/* Content */}
-      <div className="relative z-20 max-w-6xl w-full grid md:grid-cols-2 gap-16 items-center">
+      {/* Content Area */}
+      <div className="relative z-20 max-w-4xl w-full flex flex-col items-start gap-8">
         
-        {/* Left Side */}
+        {/* Content */}
         <motion.div
-          initial={{ opacity: 0, x: -80 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="flex justify-center"
+          className="w-full flex flex-col items-start text-left"
         >
-          <motion.div
-            animate={{ y: [0, -15, 0] }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-            }}
-            className="w-80 h-80 rounded-full bg-gradient-to-r from-purple-600 via-violet-500 to-cyan-400 p-1 shadow-[0_0_80px_rgba(139,92,246,0.5)]"
-          >
-           <div className="w-full h-full rounded-full overflow-hidden bg-black">
-  <Image
-    src="/profile.jpg"
-    alt="Alok"
-    width={500}
-    height={500}
-    className="w-full h-full object-cover"
-  />
-</div>
-          </motion.div>
-        </motion.div>
+          {/* Section Marker */}
+          <div className="flex items-center gap-2 mb-3 text-luxury-accent font-bold text-xs tracking-widest uppercase">
+            <span>✦</span> {badgeText}
+          </div>
 
-        {/* Right Side */}
-        <motion.div
-          initial={{ opacity: 0, x: 80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-5xl font-bold mb-6">
-            About{" "}
-            <span className="bg-gradient-to-r from-purple-500 to-cyan-400 bg-clip-text text-transparent">
-              Me
-            </span>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-luxury-text leading-tight mb-6 font-manrope">
+            Alok Srivastav <span className="text-luxury-accent">®</span>
           </h2>
 
-          <p className="text-gray-300 text-lg leading-8">
-            I'm Alok Srivastav, a MCA student passionate about
-            Artificial Intelligence, Data Analytics, Software Development,
-            and modern web technologies.
-          </p>
+          <div className="space-y-4 text-luxury-muted text-base md:text-lg leading-relaxed font-medium">
+            <p>{paragraph1}</p>
+            <p>{paragraph2}</p>
+          </div>
 
-          <p className="text-gray-400 mt-6 leading-8">
-            I build AI-powered applications, data-driven solutions,
-            interactive web experiences, and continuously explore
-            cutting-edge technologies to solve real-world problems.
-          </p>
+          {/* Highlight text block */}
+          {highlightText && (
+            <p className="border-l-2 border-luxury-accent pl-4 text-xs font-bold uppercase tracking-wider text-luxury-accent mt-6">
+              {highlightText}
+            </p>
+          )}
 
-          <div className="grid grid-cols-3 gap-4 mt-10">
+          {/* Read Story Button */}
+          <motion.a
+            href="#contact"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex items-center gap-3 px-6 py-3 rounded-full bg-luxury-accent text-white font-bold text-xs tracking-wide mt-8 shadow-[0_4px_15px_rgba(36,93,102,0.2)] hover:bg-luxury-accent-hover transition-all duration-300 group"
+          >
+            Read My Full Story
+            <div className="w-5 h-5 rounded-full bg-luxury-bg flex items-center justify-center">
+              <svg 
+                className="w-3 h-3 text-luxury-accent transform group-hover:translate-x-0.5 transition-transform" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor" 
+                strokeWidth="3.5"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </div>
+          </motion.a>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-3 gap-4 mt-12 w-full">
             
             <motion.div
-              whileHover={{ scale: 1.05, y: -10 }}
-              className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-5 text-center"
+              whileHover={{ y: -5 }}
+              className="bg-luxury-card border border-luxury-border rounded-2xl p-5 text-center shadow-[0_4px_15px_rgba(0,0,0,0.01)] hover:border-luxury-accent/30 transition-all duration-300"
             >
-              <h3 className="text-3xl font-bold text-cyan-400">5+</h3>
-              <p className="text-gray-400 text-sm">Projects</p>
+              <h3 className="text-2xl md:text-3xl font-extrabold text-luxury-text">10+</h3>
+              <p className="text-luxury-muted text-xs md:text-sm mt-1 font-medium">Completed Projects</p>
             </motion.div>
 
             <motion.div
-              whileHover={{ scale: 1.05, y: -10 }}
-              className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-5 text-center"
+              whileHover={{ y: -5 }}
+              className="bg-luxury-card border border-luxury-border rounded-2xl p-5 text-center shadow-[0_4px_15px_rgba(0,0,0,0.01)] hover:border-luxury-accent/30 transition-all duration-300"
             >
-              <h3 className="text-3xl font-bold text-purple-400">SW / AI</h3>
-              <p className="text-gray-400 text-sm">Developer</p>
+              <h3 className="text-2xl md:text-3xl font-extrabold text-luxury-text font-mono">SW / AI</h3>
+              <p className="text-luxury-muted text-xs md:text-sm mt-1 font-medium">Developer Focus</p>
             </motion.div>
 
             <motion.div
-              whileHover={{ scale: 1.05, y: -10 }}
-              className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-5 text-center"
+              whileHover={{ y: -5 }}
+              className="bg-luxury-card border border-luxury-border rounded-2xl p-5 text-center shadow-[0_4px_15px_rgba(0,0,0,0.01)] hover:border-luxury-accent/30 transition-all duration-300"
             >
-              <h3 className="text-3xl font-bold text-cyan-400">MCA</h3>
-              <p className="text-gray-400 text-sm">Student</p>
+              <h3 className="text-2xl md:text-3xl font-extrabold text-luxury-text">MCA</h3>
+              <p className="text-luxury-muted text-xs md:text-sm mt-1 font-medium">Academic Scholar</p>
             </motion.div>
 
           </div>
         </motion.div>
+
       </div>
     </section>
   );

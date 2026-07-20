@@ -1,118 +1,142 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #F8F8F6;
+  --bg-sec: #F2F3F5;
+  --card: #FFFFFF;
+  --card-hover: #FAFAFA;
+  --border: #E8E8E8;
+  --divider: #ECECEC;
+  --text-primary: #111111;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+  --accent: #245D66;
+  --accent-hover: #1B4A51;
+  --input-bg: #FFFFFF;
+  --badge-bg: #F2F3F5;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --bg: #060C0D;
+  --bg-sec: #0A1416;
+  --card: #0F1D20;
+  --card-hover: #14282B;
+  --border: #142224;
+  --divider: #182A2C;
+  --text-primary: #FFFFFF;
+  --text-secondary: #809699;
+  --text-muted: #5B6F72;
+  --accent: #206F7A;
+  --accent-hover: #16535C;
+  --input-bg: #0F1D20;
+  --badge-bg: #0A1416;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-luxury-bg: var(--bg);
+  --color-luxury-bg-sec: var(--bg-sec);
+  --color-luxury-card: var(--card);
+  --color-luxury-card-hover: var(--card-hover);
+  --color-luxury-border: var(--border);
+  --color-luxury-divider: var(--divider);
+  --color-luxury-text: var(--text-primary);
+  --color-luxury-muted: var(--text-secondary);
+  --color-luxury-muted-extra: var(--text-muted);
+  --color-luxury-accent: var(--accent);
+  --color-luxury-accent-hover: var(--accent-hover);
+  --color-luxury-input: var(--input-bg);
+  --color-luxury-badge: var(--badge-bg);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+  cursor: default;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
-body {
-  background: #050505;
-  color: white;
-}
+
 html {
   scroll-behavior: smooth;
 }
 
-body {
-  background: #050505;
-  overflow-x: hidden;
+/* Custom Selection */
+::selection {
+  background-color: var(--accent);
+  color: #FFFFFF;
 }
 
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 30%, rgba(139,92,246,.35), transparent 25%),
-    radial-gradient(circle at 20% 20%, rgba(34,211,238,.12), transparent 30%),
-    radial-gradient(circle at 80% 80%, rgba(139,92,246,.12), transparent 30%),
-    linear-gradient(to bottom, #060606, #030303);
+/* Tactile Noise Overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  content: "";
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-.glow {
-  position: absolute;
-  width: 700px;
-  height: 700px;
-  background: #8b5cf6;
-  filter: blur(220px);
-  opacity: 0.2;
-  border-radius: 50%;
+/* Apple-style thin elegant scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
-/* About Section Stars */
 
-.stars {
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+  border: 2px solid var(--bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Custom background animated blobs */
+.blob-container {
   position: absolute;
-  inset: 0;
-
-  background-image:
-    radial-gradient(2px 2px at 20px 30px, white, transparent),
-    radial-gradient(2px 2px at 120px 90px, #22d3ee, transparent),
-    radial-gradient(1px 1px at 220px 150px, white, transparent),
-    radial-gradient(2px 2px at 300px 80px, #a855f7, transparent),
-    radial-gradient(1px 1px at 400px 220px, white, transparent),
-    radial-gradient(2px 2px at 500px 180px, #22d3ee, transparent);
-
-  background-repeat: repeat;
-  background-size: 600px 600px;
-
-  opacity: 0.5;
-
-  animation: starsMove 40s linear infinite;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 0;
   pointer-events: none;
 }
 
-/* Twinkling Effect */
-
-.stars::after {
-  content: "";
+.blob {
   position: absolute;
-  inset: 0;
-
-  background-image:
-    radial-gradient(2px 2px at 100px 120px, white, transparent),
-    radial-gradient(2px 2px at 250px 250px, #22d3ee, transparent),
-    radial-gradient(2px 2px at 450px 180px, #a855f7, transparent);
-
-  background-repeat: repeat;
-  background-size: 700px 700px;
-
-  animation: twinkle 4s ease-in-out infinite alternate;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  animation: floatBlob 25s infinite alternate ease-in-out;
 }
 
-@keyframes starsMove {
-  from {
-    transform: translateY(0);
-  }
-
-  to {
-    transform: translateY(-600px);
-  }
+.dark .blob {
+  opacity: 0.015;
+  mix-blend-mode: plus-lighter;
 }
 
-@keyframes twinkle {
-  from {
-    opacity: 0.2;
+@keyframes floatBlob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
   }
-
-  to {
-    opacity: 1;
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
   }
 }
