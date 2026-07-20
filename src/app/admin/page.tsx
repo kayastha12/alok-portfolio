@@ -176,7 +176,15 @@ export default function AdminDashboard() {
             about: { ...prev.about, [key]: json.url }
           }));
         } else if (fieldName === "project.image" && editingProject) {
+          const projTitle = editingProject.title;
           setEditingProject((prev: any) => ({ ...prev, image: json.url }));
+          // Also update the corresponding project in the main data array so the image persists after save
+          setData((prev: any) => ({
+            ...prev,
+            projects: prev.projects.map((proj: any) =>
+              proj.title === projTitle ? { ...proj, image: json.url } : proj
+            )
+          }));
         } else if (fieldName === "resume") {
           showToast("success", "PDF Resume uploaded. Be sure to hit Save!");
         }
@@ -833,12 +841,25 @@ export default function AdminDashboard() {
                       <div className="grid grid-cols-2 gap-6">
                         <div>
                           <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Upload Project Thumbnail Image</label>
-                          <input
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => handleFileUpload(e, "project.image")}
-                            className="text-xs text-[#809699] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#206F7A] file:text-white hover:file:bg-[#16535C] cursor-pointer"
-                          />
+                          <div className="flex flex-col gap-2">
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={(e) => handleFileUpload(e, "project.image")}
+                              className="text-xs text-[#809699] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#206F7A] file:text-white hover:file:bg-[#16535C] cursor-pointer"
+                            />
+                            {editingProject.image && (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setEditingProject((prev: any) => ({ ...prev, image: "" }));
+                                }}
+                                className="w-fit px-3 py-1.5 rounded-lg bg-red-950/40 border border-red-900/40 text-red-400 text-xs font-bold hover:bg-red-900/30 transition-colors"
+                              >
+                                Remove Photo
+                              </button>
+                            )}
+                          </div>
                         </div>
                         <div>
                           <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Project Image Path / URL</label>
