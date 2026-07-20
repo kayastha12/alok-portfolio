@@ -46,7 +46,10 @@ export async function POST(request: Request) {
     };
     
     // Write back to DB
-    await savePortfolioData(updatedDb);
+    const success = await savePortfolioData(updatedDb);
+    if (!success) {
+      return NextResponse.json({ error: "Failed to write database to Cloudflare KV or local filesystem. Verify your KV bindings." }, { status: 500 });
+    }
     
     return NextResponse.json({ success: true, message: "Content saved successfully" });
   } catch (error: any) {

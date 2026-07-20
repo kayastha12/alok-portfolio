@@ -1,6 +1,7 @@
 import dbJson from "@/Data/db.json";
 import fs from "fs";
 import path from "path";
+import { unstable_noStore as noStore } from "next/cache";
 
 // Helper to check if running in edge/serverless runtime
 const isEdge = typeof process === "undefined" || !process.release || process.release.name !== "node";
@@ -29,6 +30,7 @@ function getKVNamespace() {
 }
 
 export async function getPortfolioData() {
+  noStore();
   // 1. Try Cloudflare KV binding first
   const kv = getKVNamespace();
   if (kv) {
