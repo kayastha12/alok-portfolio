@@ -41,11 +41,13 @@ async function saveToGitHub(data: any, token: string) {
   
   try {
     // 1. Get current file details to retrieve the SHA hash
-    const getRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, {
+    const getRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}?t=${Date.now()}`, {
       headers: {
         "Authorization": `token ${token}`,
         "Accept": "application/vnd.github.v3+json",
-        "User-Agent": "Alok-Portfolio-CMS"
+        "User-Agent": "Alok-Portfolio-CMS",
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache"
       }
     });
     
