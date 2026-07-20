@@ -1,5 +1,3 @@
-import fs from "fs";
-import path from "path";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -12,21 +10,13 @@ import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
+import { getPortfolioData } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export default function Home() {
-  const dbPath = path.join(process.cwd(), "src", "data", "db.json");
-  let portfolioData: any = {};
-  
-  try {
-    if (fs.existsSync(dbPath)) {
-      portfolioData = JSON.parse(fs.readFileSync(dbPath, "utf-8"));
-    }
-  } catch (error) {
-    console.error("Error reading portfolio database:", error);
-  }
+export default async function Home() {
+  const portfolioData = await getPortfolioData();
 
   return (
     <main className="bg-luxury-bg min-h-screen">

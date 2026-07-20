@@ -1,16 +1,14 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import fs from "fs";
-import path from "path";
 import crypto from "crypto";
+import { getPortfolioData } from "@/lib/db";
 
 export async function POST(request: Request) {
   try {
     const { email, password } = await request.json();
     
     // Read the db file
-    const dbPath = path.join(process.cwd(), "src", "data", "db.json");
-    const dbData = JSON.parse(fs.readFileSync(dbPath, "utf-8"));
+    const dbData = await getPortfolioData();
     
     // Hash the input password to check against DB
     const inputHash = crypto.createHash("sha256").update(password).digest("hex");

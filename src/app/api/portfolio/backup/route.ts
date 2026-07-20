@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import fs from "fs";
-import path from "path";
-
-const dbPath = path.join(process.cwd(), "src", "data", "db.json");
+import { getPortfolioData, savePortfolioData } from "@/lib/db";
 
 // Helper to check authentication
 async function isAuthenticated() {
@@ -18,12 +15,7 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     
-    if (!fs.existsSync(dbPath)) {
-      return NextResponse.json({ error: "Database not initialized" }, { status: 500 });
-    }
-    
-    const rawData = fs.readFileSync(dbPath, "utf-8");
-    const parsedData = JSON.parse(rawData);
+    const parsedData = await getPortfolioData();
 
     // Return the database as a downloadable file response
     return new NextResponse(JSON.stringify(parsedData, null, 2), {
@@ -51,7 +43,7 @@ export async function POST(request: Request) {
     }
     
     // Overwrite the database
-    fs.writeFileSync(dbPath, JSON.stringify(backupData, null, 2), "utf-8");
+    await savePortfolioData(backupData);
     
     return NextResponse.json({ success: true, message: "Database restored successfully" });
   } catch (error: any) {
