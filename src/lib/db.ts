@@ -33,6 +33,51 @@ function getKVNamespace() {
   return null;
 }
 
+// Helper to save database file directly to GitHub via API (triggers Cloudflare auto-rebuild)
+async function saveToGitHub(data: any, token: string) {
+  const owner = "kayastha12";
+  const repo = "alok-portfolio";
+  const filePath = "src/Data/db.json";
+  
+  try {
+    // 1. Get current file details to retrieve the SHA hash
+    const getRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, {
+      headers: {
+        "Authorization": `token ${token}`,
+        "Accept": "application/vnd.github.v3+json",
+        "User-Agent": "Alok-Portfolio-CMS"
+      }
+    });
+    
+    let sha = "";
+    if (getRes.ok) {
+      const fileData = await getRes.json();
+      sha = fileData.sha;
+    }
+    
+    // 2. Commit the updated db.json file
+    const commitRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, {
+      method: "PUT",
+      headers: {
+        "Authorization": `token ${token}`,
+        "Accept": "application/vnd.github.v3+json",
+        "Content-Type": "application/json",
+        "User-Agent": "Alok-Portfolio-CMS"
+      },
+      body: JSON.stringify({
+        message: "chore: update portfolio content via admin panel",
+        content: Buffer.from(JSON.stringify(data, null, 2)).toString("base64"),
+        sha: sha || undefined
+      })
+    });
+    
+    return commitRes.ok;
+  } catch (e) {
+    console.error("GitHub commit error:", e);
+    return false;
+  }
+}
+
 export async function getPortfolioData() {
   noStore();
   // 1. Try Cloudflare KV binding first
@@ -63,7 +108,17 @@ export async function getPortfolioData() {
 }
 
 export async function savePortfolioData(data: any) {
-  // 1. Try Cloudflare KV binding first
+  // 1. Try GitHub sync first if GITHUB_TOKEN environment variable is set
+  const g = globalThis as any;
+  const env = (g.process?.env || (typeof process !== "undefined" ? process.env : null) || {}) as any;
+  const token = env.GITHUB_TOKEN || env.github_token;
+  
+  if (token) {
+    const success = await saveToGitHub(data, token);
+    if (success) return true;
+  }
+
+  // 2. Try Cloudflare KV binding
   const kv = getKVNamespace();
   if (kv) {
     try {
@@ -74,7 +129,7 @@ export async function savePortfolioData(data: any) {
     }
   }
 
-  // 2. Try filesystem write if available
+  // 3. Try filesystem write if available (local dev)
   if (!isEdge) {
     try {
       const dbPath = path.join(process.cwd(), "src", "Data", "db.json");
