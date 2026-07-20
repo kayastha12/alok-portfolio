@@ -5,9 +5,32 @@ import path from "path";
 // Helper to check if running in edge/serverless runtime
 const isEdge = typeof process === "undefined" || !process.release || process.release.name !== "node";
 
+// Robust resolver to locate Cloudflare KV binding in all Next.js serverless adapters
+function getKVNamespace() {
+  const candidates = [
+    (globalThis as any).PORTFOLIO_KV,
+    (process.env as any).PORTFOLIO_KV,
+    (globalThis as any).__cloudflare_env__?.PORTFOLIO_KV,
+    (globalThis as any).process?.env?.PORTFOLIO_KV,
+    (globalThis as any).context?.env?.PORTFOLIO_KV,
+  ];
+
+  for (const candidate of candidates) {
+    if (
+      candidate && 
+      typeof candidate === "object" && 
+      typeof candidate.get === "function" && 
+      typeof candidate.put === "function"
+    ) {
+      return candidate;
+    }
+  }
+  return null;
+}
+
 export async function getPortfolioData() {
   // 1. Try Cloudflare KV binding first
-  const kv = (globalThis as any).PORTFOLIO_KV || (process.env as any).PORTFOLIO_KV;
+  const kv = getKVNamespace();
   if (kv) {
     try {
       const data = await kv.get("portfolio_db", { type: "json" });
@@ -35,7 +58,7 @@ export async function getPortfolioData() {
 
 export async function savePortfolioData(data: any) {
   // 1. Try Cloudflare KV binding first
-  const kv = (globalThis as any).PORTFOLIO_KV || (process.env as any).PORTFOLIO_KV;
+  const kv = getKVNamespace();
   if (kv) {
     try {
       await kv.put("portfolio_db", JSON.stringify(data));

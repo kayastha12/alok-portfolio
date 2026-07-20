@@ -14,7 +14,13 @@ export async function GET() {
     const data = await getPortfolioData();
     // Do not return passwordHash to public requests
     const { admin, ...publicData } = data;
-    return NextResponse.json(publicData);
+    return NextResponse.json(publicData, {
+      headers: {
+        "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0"
+      }
+    });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
