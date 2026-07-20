@@ -26,5 +26,25 @@ export async function GET() {
     report.cloudflareKVType = typeof g.__cloudflare_env__.PORTFOLIO_KV;
   }
 
+  // Inspect OpenNext AsyncLocalStorage Context
+  if (g.__openNextAls) {
+    report.hasOpenNextAls = true;
+    try {
+      const store = g.__openNextAls.getStore();
+      report.hasStore = typeof store !== "undefined" && store !== null;
+      if (store) {
+        report.storeKeys = Object.keys(store);
+        if (store.env) {
+          report.hasStoreEnv = true;
+          report.storeEnvKeys = Object.keys(store.env);
+          report.hasStoreKV = typeof store.env.PORTFOLIO_KV !== "undefined";
+          report.storeKVType = typeof store.env.PORTFOLIO_KV;
+        }
+      }
+    } catch (e: any) {
+      report.openNextAlsError = e.message;
+    }
+  }
+
   return NextResponse.json(report);
 }
