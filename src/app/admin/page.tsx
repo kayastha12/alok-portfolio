@@ -102,28 +102,33 @@ export default function AdminDashboard() {
   };
 
   // 3. Save portfolio database content
+  // 3. Save portfolio database content
   const handleSave = async (updatedData?: any) => {
     const payload = updatedData || data;
     if (!payload) return;
+    if (!githubToken) {
+      showToast('error', 'GitHub token is required to save changes. Please set it in Global Settings.');
+      return;
+    }
     setSaveLoading(true);
     try {
-      const res = await fetch("/api/portfolio/content", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "x-github-token": githubToken
+      const res = await fetch('/api/portfolio/content', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-github-token': githubToken,
         },
         body: JSON.stringify(payload),
       });
       if (res.ok) {
-        showToast("success", "Portfolio content updated successfully");
+        showToast('success', 'Portfolio content updated successfully');
         router.refresh();
       } else {
         const err = await res.json();
-        showToast("error", err.error || "Save operation failed");
+        showToast('error', err.error || 'Save operation failed');
       }
     } catch {
-      showToast("error", "Network error when saving content");
+      showToast('error', 'Network error when saving content');
     } finally {
       setSaveLoading(false);
     }
@@ -146,6 +151,9 @@ export default function AdminDashboard() {
     try {
       const res = await fetch("/api/portfolio/upload", {
         method: "POST",
+        headers: {
+          "x-github-token": githubToken,
+        },
         body: formData,
       });
 

@@ -90,7 +90,7 @@ Try asking:
       {open && (
         <div
           className="
-            fixed bottom-24 right-6
+            fixed bottom-4 right-4 sm:bottom-24 sm:right-6
             w-[350px] h-[550px]
             bg-luxury-card
             border border-luxury-border
@@ -102,14 +102,21 @@ Try asking:
           "
         >
           {/* Header */}
-          <div className="p-5 border-b border-luxury-border/60 bg-luxury-bg">
+          <div className="p-5 border-b border-luxury-border/60 bg-luxury-bg flex justify-between items-center">
             <h3 className="font-extrabold text-luxury-text text-base flex items-center gap-1.5 font-manrope">
               <span>🤖</span> Ask AI About Alok
             </h3>
-            <p className="text-xs text-luxury-muted mt-0.5 font-semibold">
-              Portfolio Chatbot Assistant
-            </p>
+            <button
+              onClick={() => setOpen(false)}
+              className="text-luxury-muted hover:text-luxury-text focus:outline-none"
+              aria-label="Close chatbot"
+            >
+              ✕
+            </button>
           </div>
+          <p className="text-xs text-luxury-muted mt-0.5 font-semibold">
+            Portfolio Chatbot Assistant
+          </p>
 
           {/* Quick Suggestions */}
           <div className="px-4 pt-4 flex flex-wrap gap-2">

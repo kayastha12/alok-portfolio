@@ -30,12 +30,59 @@ export async function POST(request: Request) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    // Save directly to the public folder
-    const targetDir = path.join(process.cwd(), "public");
+    // Try to commit to GitHub if token is provided
+    const token = request.headers.get('x-github-token');
+    if (token) {
+      const owner = 'kayastha12';
+      const repo = 'alok-portfolio';
+      const filePath = `public/${name}`;
+
+      // Get current file SHA (if exists)
+      const getRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}?t=${Date.now()}`, {
+        headers: {
+          Authorization: `token ${token}`,
+          Accept: 'application/vnd.github.v3+json',
+          'User-Agent': 'Alok-Portfolio-Upload',
+          'Cache-Control': 'no-cache',
+          Pragma: 'no-cache',
+        },
+      });
+      let sha = '';
+      if (getRes.ok) {
+        const data = await getRes.json();
+        sha = data.sha;
+      }
+
+      // Commit the file
+      const commitRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `token ${token}`,
+          Accept: 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json',
+          'User-Agent': 'Alok-Portfolio-Upload',
+        },
+        body: JSON.stringify({
+          message: `chore: upload ${name} via admin panel`,
+          content: buffer.toString('base64'),
+          sha: sha || undefined,
+        }),
+      });
+
+      if (!commitRes.ok) {
+        const err = await commitRes.json();
+        return NextResponse.json({ error: err.message || 'GitHub upload failed' }, { status: 500 });
+      }
+
+      // Return success, file will be served from root
+      return NextResponse.json({ success: true, url: `/${name}`, message: `File ${name} uploaded via GitHub` });
+    }
+
+    // Fallback: write to local public folder (dev only)
+    const targetDir = path.join(process.cwd(), 'public');
     if (!fs.existsSync(targetDir)) {
       fs.mkdirSync(targetDir, { recursive: true });
     }
-    
     const targetPath = path.join(targetDir, name);
     fs.writeFileSync(targetPath, buffer);
 
