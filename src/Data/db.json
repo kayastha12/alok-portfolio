@@ -6,7 +6,7 @@
   "hero": {
     "badgeText": "Available for new opportunities",
     "greeting": "Hello,",
-    "name": "Alok Srivastav",
+    "name": "Alok ",
     "roles": [
       "AI Engineer",
       "Data Analyst",
@@ -385,7 +385,7 @@
     "googleAnalytics": ""
   },
   "settings": {
-    "primaryColor": "#8000ff",
+    "primaryColor": "#060C0D",
     "accentColor": "#206F7A",
     "accentHoverColor": "#16535C",
     "fonts": {
