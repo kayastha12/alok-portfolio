@@ -109,11 +109,11 @@ export async function getPortfolioData() {
   return dbJson;
 }
 
-export async function savePortfolioData(data: any) {
-  // 1. Try GitHub sync first if GITHUB_TOKEN environment variable is set
+export async function savePortfolioData(data: any, clientToken?: string | null) {
+  // 1. Try GitHub sync first if clientToken or GITHUB_TOKEN environment variable is set
   const g = globalThis as any;
   const env = (g.process?.env || (typeof process !== "undefined" ? process.env : null) || {}) as any;
-  const token = env.GITHUB_TOKEN || env.github_token;
+  const token = clientToken || env.GITHUB_TOKEN || env.github_token;
   
   if (token) {
     const success = await saveToGitHub(data, token);

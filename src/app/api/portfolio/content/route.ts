@@ -32,6 +32,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     
+    const clientToken = request.headers.get("x-github-token");
     const incomingData = await request.json();
     const currentDb = await getPortfolioData();
     
@@ -46,9 +47,9 @@ export async function POST(request: Request) {
     };
     
     // Write back to DB
-    const success = await savePortfolioData(updatedDb);
+    const success = await savePortfolioData(updatedDb, clientToken);
     if (!success) {
-      return NextResponse.json({ error: "Failed to write database to Cloudflare KV or local filesystem. Verify your KV bindings." }, { status: 500 });
+      return NextResponse.json({ error: "Failed to write database. If running in production, please configure your GitHub Token under Global Settings." }, { status: 500 });
     }
     
     return NextResponse.json({ success: true, message: "Content saved successfully" });

@@ -27,6 +27,14 @@ export default function AdminDashboard() {
   const [saveLoading, setSaveLoading] = useState(false);
   const [toast, setToast] = useState<{ type: "success" | "error"; message: string } | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [githubToken, setGithubToken] = useState("");
+
+  // Load token from browser local storage on mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setGithubToken(localStorage.getItem("github_token") || "");
+    }
+  }, []);
 
   // Temp states for lists
   const [newSkill, setNewSkill] = useState({ categoryIdx: 0, val: "" });
@@ -94,14 +102,18 @@ export default function AdminDashboard() {
   };
 
   // 3. Save portfolio database content
-  const handleSave = async (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
+  const handleSave = async (updatedData?: any) => {
+    const payload = updatedData || data;
+    if (!payload) return;
     setSaveLoading(true);
     try {
       const res = await fetch("/api/portfolio/content", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        headers: { 
+          "Content-Type": "application/json",
+          "x-github-token": githubToken
+        },
+        body: JSON.stringify(payload),
       });
       if (res.ok) {
         showToast("success", "Portfolio content updated successfully");
@@ -1449,6 +1461,27 @@ export default function AdminDashboard() {
                             settings: { ...data.settings, glowsEnabled: e.target.checked }
                           })}
                           className="w-4 h-4 accent-[#206F7A]"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="border-t border-[#142224] pt-6 space-y-4">
+                      <h4 className="text-xs font-bold text-[#809699] uppercase tracking-wider">GitHub Sync Configuration</h4>
+                      <p className="text-[10px] text-[#809699]/70 leading-relaxed font-semibold">
+                        Enter your GitHub Personal Access Token (PAT) with `repo` permissions to commit changes back to your repository on Cloudflare. 
+                        It is saved securely in your browser's LocalStorage and never committed to code.
+                      </p>
+                      <div>
+                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">GitHub Personal Access Token (PAT)</label>
+                        <input
+                          type="password"
+                          value={githubToken}
+                          onChange={(e) => {
+                            setGithubToken(e.target.value);
+                            localStorage.setItem("github_token", e.target.value);
+                          }}
+                          placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
                         />
                       </div>
                     </div>
