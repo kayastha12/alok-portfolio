@@ -38,22 +38,22 @@ export default function AdminLogin() {
   };
 
   return (
-    <main className="min-h-screen w-full bg-[#060C0D] flex items-center justify-center relative overflow-hidden px-6">
+    <main className="min-h-screen w-full bg-[#020405] flex items-center justify-center relative overflow-hidden px-6">
       {/* Glow backgrounds */}
-      <div className="absolute top-[20%] left-[20%] w-[350px] h-[350px] bg-radial from-[#206F7A]/20 via-[#206F7A]/3 to-transparent blur-[80px] rounded-full z-0" />
+      <div className="absolute top-[20%] left-[20%] w-[350px] h-[350px] bg-radial from-[#06B6D4]/20 via-[#06B6D4]/3 to-transparent blur-[80px] rounded-full z-0" />
       <div className="absolute bottom-[20%] right-[20%] w-[350px] h-[350px] bg-radial from-purple-900/10 via-transparent to-transparent blur-[80px] rounded-full z-0" />
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-md bg-[#0F1D20]/40 backdrop-blur-xl border border-[#142224] rounded-[2.5rem] p-10 shadow-2xl relative z-10"
+        className="w-full max-w-md bg-[#081013]/40 backdrop-blur-xl border border-[rgba(255,255,255,0.06)] rounded-2xl p-10 shadow-2xl relative z-10"
       >
         <div className="text-center mb-8">
           <div className="text-2xl font-black text-white font-manrope tracking-wider">
-            Alok <span className="text-[#206F7A]">S.</span>
+            Alok <span className="text-[#06B6D4]">S.</span>
           </div>
-          <p className="text-xs text-[#809699] mt-2 font-bold tracking-widest uppercase">
+          <p className="text-xs text-[#9CA3AF] mt-2 font-bold tracking-widest uppercase">
             Admin CMS Login
           </p>
         </div>
@@ -69,7 +69,7 @@ export default function AdminLogin() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="admin@alok.com"
               required
-              className="w-full p-4 rounded-2xl bg-[#060C0D] border border-[#142224] text-white text-sm outline-none focus:border-[#206F7A]/40 transition-colors"
+              className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-white text-sm outline-none focus:border-[#06B6D4]/40 transition-colors"
             />
           </div>
 
@@ -83,7 +83,7 @@ export default function AdminLogin() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               required
-              className="w-full p-4 rounded-2xl bg-[#060C0D] border border-[#142224] text-white text-sm outline-none focus:border-[#206F7A]/40 transition-colors"
+              className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-white text-sm outline-none focus:border-[#06B6D4]/40 transition-colors"
             />
           </div>
 
@@ -102,7 +102,7 @@ export default function AdminLogin() {
             disabled={loading}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full py-4 bg-[#206F7A] hover:bg-[#16535C] text-white font-bold text-xs tracking-wider uppercase rounded-2xl shadow-lg shadow-[#206F7A]/15 transition-all flex justify-center items-center"
+            className="w-full py-4 bg-[#06B6D4] hover:bg-[#0891B2] text-white font-bold text-xs tracking-wider uppercase rounded-xl shadow-lg shadow-[#06B6D4]/15 transition-all flex justify-center items-center"
           >
             {loading ? (
               <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">

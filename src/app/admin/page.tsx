@@ -232,8 +232,8 @@ export default function AdminDashboard() {
 
   if (!authenticated || loading) {
     return (
-      <div className="min-h-screen w-full bg-[#060C0D] flex items-center justify-center text-white">
-        <svg className="animate-spin h-8 w-8 text-[#206F7A]" fill="none" viewBox="0 0 24 24">
+      <div className="min-h-screen w-full bg-[#020405] flex items-center justify-center text-white">
+        <svg className="animate-spin h-8 w-8 text-[#06B6D4]" fill="none" viewBox="0 0 24 24">
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
         </svg>
@@ -242,15 +242,15 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="h-screen w-full bg-[#060C0D] text-white flex flex-col font-sans overflow-hidden">
+    <div className="h-screen w-full bg-[#020405] text-white flex flex-col font-sans overflow-hidden">
       
       {/* Header bar */}
-      <header className="h-16 px-4 md:px-8 border-b border-[#142224] bg-[#0F1D20]/50 backdrop-blur-md flex items-center justify-between relative z-50">
+      <header className="h-16 px-4 md:px-8 border-b border-[rgba(255,255,255,0.06)] bg-[#081013]/50 backdrop-blur-md flex items-center justify-between relative z-50">
         <div className="flex items-center gap-3">
           {/* Sidebar Mobile Toggle Hamburger */}
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="w-10 h-10 rounded-xl border border-[#142224] flex md:hidden items-center justify-center text-[#809699] hover:bg-[#0F1D20]/60 hover:text-white transition-colors"
+            className="w-10 h-10 rounded-xl border border-[rgba(255,255,255,0.06)] flex md:hidden items-center justify-center text-[#9CA3AF] hover:bg-[#081013]/60 hover:text-white transition-colors"
             aria-label="Toggle Dashboard Menu"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -262,21 +262,21 @@ export default function AdminDashboard() {
             </svg>
           </button>
           
-          <span className="font-black text-lg tracking-wider">Alok <span className="text-[#206F7A]">S.</span></span>
-          <span className="text-[10px] bg-[#206F7A]/20 text-[#206F7A] border border-[#206F7A]/30 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider hidden xs:inline-block">CMS Panel</span>
+          <span className="font-black text-lg tracking-wider">Alok <span className="text-[#06B6D4]">S.</span></span>
+          <span className="text-[10px] bg-[#06B6D4]/20 text-[#06B6D4] border border-[#06B6D4]/30 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider hidden xs:inline-block">CMS Panel</span>
         </div>
 
         <div className="flex items-center gap-4">
           <button
             onClick={() => handleSave()}
             disabled={saveLoading}
-            className="flex items-center gap-2 px-5 py-2 rounded-xl bg-[#206F7A] hover:bg-[#16535C] font-bold text-xs tracking-wide shadow-lg shadow-[#206F7A]/10 transition-all"
+            className="flex items-center gap-2 px-5 py-2 rounded-xl bg-[#06B6D4] hover:bg-[#0891B2] font-bold text-xs tracking-wide shadow-lg shadow-[#06B6D4]/10 transition-all"
           >
             {saveLoading ? "Saving..." : "Save Changes"}
           </button>
           <button
             onClick={handleLogout}
-            className="px-4 py-2 rounded-xl border border-[#142224] hover:bg-red-950/20 hover:border-red-900/30 text-xs font-bold transition-colors"
+            className="px-4 py-2 rounded-xl border border-[rgba(255,255,255,0.06)] hover:bg-red-950/20 hover:border-red-900/30 text-xs font-bold transition-colors"
           >
             Logout
           </button>
@@ -288,8 +288,8 @@ export default function AdminDashboard() {
         
         {/* Sidebar */}
         <aside className={`
-          fixed inset-y-0 left-0 top-16 w-64 border-r border-[#142224] bg-[#0E1A1C] flex flex-col p-6 gap-2 overflow-y-auto z-40
-          transition-transform duration-300 md:relative md:top-0 md:translate-x-0 md:bg-[#0F1D20]/20
+          fixed inset-y-0 left-0 top-16 w-64 border-r border-[rgba(255,255,255,0.06)] bg-[#0E1A1C] flex flex-col p-6 gap-2 overflow-y-auto z-40
+          transition-transform duration-300 md:relative md:top-0 md:translate-x-0 md:bg-[#081013]/20
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
         `}>
           {[
@@ -312,10 +312,10 @@ export default function AdminDashboard() {
                 setActiveTab(item.id as Tab);
                 setSidebarOpen(false); // auto-close drawer on mobile
               }}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-left text-xs font-bold transition-all ${
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold transition-all ${
                 activeTab === item.id
-                  ? "bg-[#206F7A] text-white shadow-lg shadow-[#206F7A]/15"
-                  : "text-[#809699] hover:bg-[#0F1D20]/60 hover:text-white"
+                  ? "bg-[#06B6D4] text-white shadow-lg shadow-[#06B6D4]/15"
+                  : "text-[#9CA3AF] hover:bg-[#081013]/60 hover:text-white"
               }`}
             >
               <span className="text-base">{item.icon}</span>
@@ -342,36 +342,36 @@ export default function AdminDashboard() {
                 <div className="space-y-8">
                   <div>
                     <h1 className="text-3xl font-extrabold font-manrope">Welcome, Alok!</h1>
-                    <p className="text-sm text-[#809699] mt-2">Manage all details on your portfolio instantly without touching the codebase.</p>
+                    <p className="text-sm text-[#9CA3AF] mt-2">Manage all details on your portfolio instantly without touching the codebase.</p>
                   </div>
 
                   <div className="grid grid-cols-3 gap-6">
-                    <div className="bg-[#0F1D20]/40 border border-[#142224] p-6 rounded-3xl">
-                      <span className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block">Total Projects</span>
+                    <div className="bg-[#081013]/40 border border-[rgba(255,255,255,0.06)] p-6 rounded-2xl">
+                      <span className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block">Total Projects</span>
                       <span className="text-4xl font-extrabold mt-2 block font-manrope">{data.projects?.length || 0}</span>
                     </div>
-                    <div className="bg-[#0F1D20]/40 border border-[#142224] p-6 rounded-3xl">
-                      <span className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block">Timeline Cards</span>
+                    <div className="bg-[#081013]/40 border border-[rgba(255,255,255,0.06)] p-6 rounded-2xl">
+                      <span className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block">Timeline Cards</span>
                       <span className="text-4xl font-extrabold mt-2 block font-manrope">{data.experience?.length || 0}</span>
                     </div>
-                    <div className="bg-[#0F1D20]/40 border border-[#142224] p-6 rounded-3xl">
-                      <span className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block">Chatbot QA Rules</span>
+                    <div className="bg-[#081013]/40 border border-[rgba(255,255,255,0.06)] p-6 rounded-2xl">
+                      <span className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block">Chatbot QA Rules</span>
                       <span className="text-4xl font-extrabold mt-2 block font-manrope">{data.chatbot?.length || 0}</span>
                     </div>
                   </div>
 
-                  <div className="bg-[#0F1D20]/40 border border-[#142224] p-8 rounded-3xl space-y-6">
+                  <div className="bg-[#081013]/40 border border-[rgba(255,255,255,0.06)] p-8 rounded-2xl space-y-6">
                     <h3 className="text-lg font-bold">Quick Configurations Backup</h3>
-                    <p className="text-xs text-[#809699]">Export your full content structure as a structured JSON file, or drag-and-drop to restore a backup config instantly.</p>
+                    <p className="text-xs text-[#9CA3AF]">Export your full content structure as a structured JSON file, or drag-and-drop to restore a backup config instantly.</p>
                     
                     <div className="flex gap-4">
                       <button
                         onClick={handleExportBackup}
-                        className="px-5 py-3 bg-[#206F7A]/25 border border-[#206F7A]/40 text-[#206F7A] font-bold text-xs tracking-wide rounded-xl hover:bg-[#206F7A]/40 transition-all"
+                        className="px-5 py-3 bg-[#06B6D4]/25 border border-[#06B6D4]/40 text-[#06B6D4] font-bold text-xs tracking-wide rounded-xl hover:bg-[#06B6D4]/40 transition-all"
                       >
                         📥 Export DB (JSON)
                       </button>
-                      <label className="px-5 py-3 bg-[#0F1D20] border border-[#142224] text-white font-bold text-xs tracking-wide rounded-xl hover:bg-[#14282B] cursor-pointer transition-all">
+                      <label className="px-5 py-3 bg-[#081013] border border-[rgba(255,255,255,0.06)] text-white font-bold text-xs tracking-wide rounded-xl hover:bg-[#14282B] cursor-pointer transition-all">
                         📤 Restore DB (JSON)
                         <input
                           type="file"
@@ -390,76 +390,76 @@ export default function AdminDashboard() {
                 <div className="space-y-6">
                   <h2 className="text-2xl font-extrabold font-manrope">Hero Area Settings</h2>
                   
-                  <div className="bg-[#0F1D20]/40 border border-[#142224] p-8 rounded-3xl space-y-6">
+                  <div className="bg-[#081013]/40 border border-[rgba(255,255,255,0.06)] p-8 rounded-2xl space-y-6">
                     <div className="grid grid-cols-2 gap-6">
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Greeting Title</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Greeting Title</label>
                         <input
                           type="text"
                           value={data.hero.greeting}
                           onChange={(e) => setData({ ...data, hero: { ...data.hero, greeting: e.target.value } })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40"
                         />
                       </div>
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Primary Name</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Primary Name</label>
                         <input
                           type="text"
                           value={data.hero.name}
                           onChange={(e) => setData({ ...data, hero: { ...data.hero, name: e.target.value } })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Roles (Comma Separated)</label>
+                      <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Roles (Comma Separated)</label>
                       <input
                         type="text"
                         value={data.hero.roles.join(", ")}
                         onChange={(e) => setData({ ...data, hero: { ...data.hero, roles: e.target.value.split(",").map(r => r.trim()) } })}
-                        className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
+                        className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40"
                       />
                     </div>
 
                     <div>
-                      <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Description Summary</label>
+                      <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Description Summary</label>
                       <textarea
                         rows={3}
                         value={data.hero.description}
                         onChange={(e) => setData({ ...data, hero: { ...data.hero, description: e.target.value } })}
-                        className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40 resize-none"
+                        className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40 resize-none"
                       />
                     </div>
 
                     {/* Portrait cutout settings */}
-                    <div className="border-t border-[#142224] pt-6 space-y-6">
+                    <div className="border-t border-[rgba(255,255,255,0.06)] pt-6 space-y-6">
                       <h4 className="text-sm font-bold">Futuristic Portrait Cutout Controls</h4>
                       
                       <div className="grid grid-cols-2 gap-6">
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Replace Portrait Image (PNG cutout)</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Replace Portrait Image (PNG cutout)</label>
                           <input
                             type="file"
                             accept="image/*"
                             onChange={(e) => handleFileUpload(e, "hero.photo.src")}
-                            className="text-xs text-[#809699] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#206F7A] file:text-white hover:file:bg-[#16535C] cursor-pointer"
+                            className="text-xs text-[#9CA3AF] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#06B6D4] file:text-white hover:file:bg-[#0891B2] cursor-pointer"
                           />
                         </div>
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Current Photo Path</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Current Photo Path</label>
                           <input
                             type="text"
                             value={data.hero.photo.src}
                             readOnly
-                            className="w-full p-4 rounded-xl bg-[#060C0D]/50 border border-[#142224] text-xs text-[#809699] outline-none"
+                            className="w-full p-4 rounded-xl bg-[#020405]/50 border border-[rgba(255,255,255,0.06)] text-xs text-[#9CA3AF] outline-none"
                           />
                         </div>
                       </div>
 
                       <div className="grid grid-cols-3 gap-6">
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Scale (e.g. 1.25)</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Scale (e.g. 1.25)</label>
                           <input
                             type="number"
                             step="0.05"
@@ -468,11 +468,11 @@ export default function AdminDashboard() {
                               ...data,
                               hero: { ...data.hero, photo: { ...data.hero.photo, scale: parseFloat(e.target.value) } }
                             })}
-                            className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
+                            className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40"
                           />
                         </div>
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Y Position Offset (px)</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Y Position Offset (px)</label>
                           <input
                             type="number"
                             value={data.hero.photo.positionY}
@@ -480,11 +480,11 @@ export default function AdminDashboard() {
                               ...data,
                               hero: { ...data.hero, photo: { ...data.hero.photo, positionY: parseInt(e.target.value) } }
                             })}
-                            className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
+                            className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40"
                           />
                         </div>
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Cutout Opacity</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Cutout Opacity</label>
                           <input
                             type="number"
                             step="0.01"
@@ -494,7 +494,7 @@ export default function AdminDashboard() {
                               ...data,
                               hero: { ...data.hero, photo: { ...data.hero.photo, opacity: parseFloat(e.target.value) } }
                             })}
-                            className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
+                            className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40"
                           />
                         </div>
                       </div>
@@ -508,61 +508,61 @@ export default function AdminDashboard() {
                 <div className="space-y-6">
                   <h2 className="text-2xl font-extrabold font-manrope">About Area Settings</h2>
                   
-                  <div className="bg-[#0F1D20]/40 border border-[#142224] p-8 rounded-3xl space-y-6">
+                  <div className="bg-[#081013]/40 border border-[rgba(255,255,255,0.06)] p-8 rounded-2xl space-y-6">
                     <div>
-                      <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Badge Text</label>
+                      <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Badge Text</label>
                       <input
                         type="text"
                         value={data.about.badgeText}
                         onChange={(e) => setData({ ...data, about: { ...data.about, badgeText: e.target.value } })}
-                        className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
+                        className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40"
                       />
                     </div>
 
                     <div>
-                      <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Heading Line</label>
+                      <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Heading Line</label>
                       <input
                         type="text"
                         value={data.about.heading}
                         onChange={(e) => setData({ ...data, about: { ...data.about, heading: e.target.value } })}
-                        className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
+                        className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40"
                       />
                     </div>
 
                     <div>
-                      <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Paragraph 1</label>
+                      <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Paragraph 1</label>
                       <textarea
                         rows={4}
                         value={data.about.paragraph1}
                         onChange={(e) => setData({ ...data, about: { ...data.about, paragraph1: e.target.value } })}
-                        className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40 resize-none"
+                        className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40 resize-none"
                       />
                     </div>
 
                     <div>
-                      <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Paragraph 2</label>
+                      <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Paragraph 2</label>
                       <textarea
                         rows={4}
                         value={data.about.paragraph2}
                         onChange={(e) => setData({ ...data, about: { ...data.about, paragraph2: e.target.value } })}
-                        className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40 resize-none"
+                        className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40 resize-none"
                       />
                     </div>
 
                     <div>
-                      <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Highlight Quote Block</label>
+                      <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Highlight Quote Block</label>
                       <textarea
                         rows={2}
                         value={data.about.highlightText}
                         onChange={(e) => setData({ ...data, about: { ...data.about, highlightText: e.target.value } })}
-                        className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40 resize-none"
+                        className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40 resize-none"
                       />
                     </div>
 
                     {/* Stats / Cards Grid section */}
-                    <div className="border-t border-[#142224] pt-6 space-y-6">
+                    <div className="border-t border-[rgba(255,255,255,0.06)] pt-6 space-y-6">
                       <h4 className="text-sm font-bold">Key Stats Cards</h4>
-                      <p className="text-xs text-[#809699]">Edit the three key statistic card values and labels visible on the About section.</p>
+                      <p className="text-xs text-[#9CA3AF]">Edit the three key statistic card values and labels visible on the About section.</p>
                       
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {(data.about.stats || [
@@ -570,10 +570,10 @@ export default function AdminDashboard() {
                           { value: "SW / AI", label: "Developer Focus" },
                           { value: "MCA", label: "Academic Scholar" }
                         ]).map((stat: any, index: number) => (
-                          <div key={index} className="bg-[#060C0D] border border-[#142224] p-4 rounded-2xl space-y-3">
-                            <span className="text-[9px] bg-[#206F7A]/20 text-[#206F7A] border border-[#206F7A]/30 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Card {index + 1}</span>
+                          <div key={index} className="bg-[#020405] border border-[rgba(255,255,255,0.06)] p-4 rounded-xl space-y-3">
+                            <span className="text-[9px] bg-[#06B6D4]/20 text-[#06B6D4] border border-[#06B6D4]/30 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Card {index + 1}</span>
                             <div>
-                              <label className="text-[9px] font-bold text-[#809699] uppercase tracking-wider block mb-1">Card Value</label>
+                              <label className="text-[9px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-1">Card Value</label>
                               <input
                                 type="text"
                                 value={stat.value}
@@ -589,11 +589,11 @@ export default function AdminDashboard() {
                                     about: { ...data.about, stats: currentStats }
                                   });
                                 }}
-                                className="w-full p-2.5 rounded-xl bg-[#070D0E] border border-[#142224] text-xs text-white outline-none focus:border-[#206F7A]/40"
+                                className="w-full p-2.5 rounded-xl bg-[#070D0E] border border-[rgba(255,255,255,0.06)] text-xs text-white outline-none focus:border-[#06B6D4]/40"
                               />
                             </div>
                             <div>
-                              <label className="text-[9px] font-bold text-[#809699] uppercase tracking-wider block mb-1">Card Label</label>
+                              <label className="text-[9px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-1">Card Label</label>
                               <input
                                 type="text"
                                 value={stat.label}
@@ -609,7 +609,7 @@ export default function AdminDashboard() {
                                     about: { ...data.about, stats: currentStats }
                                   });
                                 }}
-                                className="w-full p-2.5 rounded-xl bg-[#070D0E] border border-[#142224] text-xs text-white outline-none focus:border-[#206F7A]/40"
+                                className="w-full p-2.5 rounded-xl bg-[#070D0E] border border-[rgba(255,255,255,0.06)] text-xs text-white outline-none focus:border-[#06B6D4]/40"
                               />
                             </div>
                           </div>
@@ -636,17 +636,17 @@ export default function AdminDashboard() {
                         setData({ ...data, skills: updated });
                         showToast("success", "New skill category added. Hit Save Changes!");
                       }}
-                      className="px-4 py-2.5 bg-[#206F7A] text-white font-bold text-xs tracking-wide rounded-xl hover:bg-[#16535C]"
+                      className="px-4 py-2.5 bg-[#06B6D4] text-white font-bold text-xs tracking-wide rounded-xl hover:bg-[#0891B2]"
                     >
                       + Add Skill Category
                     </button>
                   </div>
                   
                   {data.skills.map((category: any, catIdx: number) => (
-                    <div key={catIdx} className="bg-[#0F1D20]/40 border border-[#142224] p-8 rounded-3xl space-y-6">
+                    <div key={catIdx} className="bg-[#081013]/40 border border-[rgba(255,255,255,0.06)] p-8 rounded-2xl space-y-6">
                       <div className="flex justify-between items-center">
                         <div className="flex items-center gap-3">
-                          <h3 className="font-extrabold text-base text-[#206F7A]">{category.title}</h3>
+                          <h3 className="font-extrabold text-base text-[#06B6D4]">{category.title}</h3>
                           <button
                             type="button"
                             onClick={() => {
@@ -661,12 +661,12 @@ export default function AdminDashboard() {
                             Delete Category
                           </button>
                         </div>
-                        <span className="text-[10px] bg-[#142224] text-[#809699] px-3 py-1 rounded-full font-bold uppercase tracking-wider">Category {catIdx + 1}</span>
+                        <span className="text-[10px] bg-[rgba(255,255,255,0.06)] text-[#9CA3AF] px-3 py-1 rounded-full font-bold uppercase tracking-wider">Category {catIdx + 1}</span>
                       </div>
 
                       <div className="grid grid-cols-2 gap-6">
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Category Title</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Category Title</label>
                           <input
                             type="text"
                             value={category.title}
@@ -675,11 +675,11 @@ export default function AdminDashboard() {
                               updated[catIdx].title = e.target.value;
                               setData({ ...data, skills: updated });
                             }}
-                            className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
+                            className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40"
                           />
                         </div>
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Category Description</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Category Description</label>
                           <input
                             type="text"
                             value={category.description}
@@ -688,14 +688,14 @@ export default function AdminDashboard() {
                               updated[catIdx].description = e.target.value;
                               setData({ ...data, skills: updated });
                             }}
-                            className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
+                            className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40"
                           />
                         </div>
                       </div>
 
                       <div className="grid grid-cols-2 gap-6">
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Category Icon (Predefined tag or image path)</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Category Icon (Predefined tag or image path)</label>
                           <input
                             type="text"
                             value={category.icon}
@@ -704,12 +704,12 @@ export default function AdminDashboard() {
                               updated[catIdx].icon = e.target.value;
                               setData({ ...data, skills: updated });
                             }}
-                            className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
+                            className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40"
                             placeholder="AI, Analytics, Mobile, Database, Tools, or path to uploaded icon"
                           />
                         </div>
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Upload Custom Skill Icon</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Upload Custom Skill Icon</label>
                           <input
                             type="file"
                             accept="image/*"
@@ -732,19 +732,19 @@ export default function AdminDashboard() {
                                 showToast("error", "Error uploading skill icon");
                               }
                             }}
-                            className="text-xs text-[#809699] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#206F7A] file:text-white hover:file:bg-[#16535C] cursor-pointer"
+                            className="text-xs text-[#9CA3AF] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#06B6D4] file:text-white hover:file:bg-[#0891B2] cursor-pointer"
                           />
                         </div>
                       </div>
 
                       {/* Pill tags list */}
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Skills pill tags</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Skills pill tags</label>
                         <div className="flex flex-wrap gap-2.5 mb-4">
                            {category.skills?.map((skill: string, skillIdx: number) => (
                             <div
                               key={skillIdx}
-                              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#060C0D] border border-[#142224] text-xs font-bold"
+                              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#020405] border border-[rgba(255,255,255,0.06)] text-xs font-bold"
                             >
                               <span>{skill}</span>
                               <button
@@ -769,7 +769,7 @@ export default function AdminDashboard() {
                             placeholder="Add tag (e.g. PyTorch)"
                             onChange={(e) => setNewSkill({ categoryIdx: catIdx, val: e.target.value })}
                             value={newSkill.categoryIdx === catIdx ? newSkill.val : ""}
-                            className="px-4 py-2.5 rounded-xl bg-[#060C0D] border border-[#142224] text-xs text-white outline-none focus:border-[#206F7A]/40"
+                            className="px-4 py-2.5 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-xs text-white outline-none focus:border-[#06B6D4]/40"
                           />
                           <button
                             type="button"
@@ -781,7 +781,7 @@ export default function AdminDashboard() {
                               setData({ ...data, skills: updated });
                               setNewSkill({ categoryIdx: 0, val: "" });
                             }}
-                            className="px-4 py-2.5 rounded-xl bg-[#206F7A] text-white font-bold text-xs tracking-wider uppercase hover:bg-[#16535C]"
+                            className="px-4 py-2.5 rounded-xl bg-[#06B6D4] text-white font-bold text-xs tracking-wider uppercase hover:bg-[#0891B2]"
                           >
                             Add tag
                           </button>
@@ -812,7 +812,7 @@ export default function AdminDashboard() {
                         order: data.projects.length + 1,
                         buttonText: "View Details"
                       })}
-                      className="px-4 py-2.5 bg-[#206F7A] text-white font-bold text-xs tracking-wide rounded-xl hover:bg-[#16535C]"
+                      className="px-4 py-2.5 bg-[#06B6D4] text-white font-bold text-xs tracking-wide rounded-xl hover:bg-[#0891B2]"
                     >
                       + Create Project
                     </button>
@@ -824,11 +824,11 @@ export default function AdminDashboard() {
                       {data.projects.map((proj: any, idx: number) => (
                         <div
                           key={idx}
-                          className="bg-[#0F1D20]/40 border border-[#142224] p-6 rounded-3xl flex justify-between items-center"
+                          className="bg-[#081013]/40 border border-[rgba(255,255,255,0.06)] p-6 rounded-2xl flex justify-between items-center"
                         >
                           <div>
                             <h3 className="font-extrabold text-base">{proj.title}</h3>
-                            <p className="text-xs text-[#809699] mt-1">{proj.category} • {proj.tech.join(", ")}</p>
+                            <p className="text-xs text-[#9CA3AF] mt-1">{proj.category} • {proj.tech.join(", ")}</p>
                           </div>
                           
                           <div className="flex gap-3">
@@ -856,12 +856,12 @@ export default function AdminDashboard() {
                     </div>
                   ) : (
                     // Edit Overlay Form
-                    <div className="bg-[#0F1D20]/50 border border-[#142224] p-8 rounded-[2.5rem] space-y-6">
-                      <div className="flex justify-between items-center border-b border-[#142224] pb-4">
-                        <h3 className="font-extrabold text-lg text-[#206F7A]">Project Editor Form</h3>
+                    <div className="bg-[#081013]/50 border border-[rgba(255,255,255,0.06)] p-8 rounded-2xl space-y-6">
+                      <div className="flex justify-between items-center border-b border-[rgba(255,255,255,0.06)] pb-4">
+                        <h3 className="font-extrabold text-lg text-[#06B6D4]">Project Editor Form</h3>
                         <button
                           onClick={() => setEditingProject(null)}
-                          className="text-[#809699] hover:text-white font-bold text-xs"
+                          className="text-[#9CA3AF] hover:text-white font-bold text-xs"
                         >
                           Cancel / Back
                         </button>
@@ -869,75 +869,75 @@ export default function AdminDashboard() {
 
                       <div className="grid grid-cols-2 gap-6">
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Project Title</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Project Title</label>
                           <input
                             type="text"
                             value={editingProject.title}
                             onChange={(e) => setEditingProject({ ...editingProject, title: e.target.value })}
-                            className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                            className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                           />
                         </div>
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Category Classification</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Category Classification</label>
                           <input
                             type="text"
                             value={editingProject.category}
                             onChange={(e) => setEditingProject({ ...editingProject, category: e.target.value })}
-                            className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                            className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Short Description</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Short Description</label>
                         <input
                           type="text"
                           value={editingProject.description}
                           onChange={(e) => setEditingProject({ ...editingProject, description: e.target.value })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                         />
                       </div>
 
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Long Case Study Description</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Long Case Study Description</label>
                         <textarea
                           rows={4}
                           value={editingProject.longDescription}
                           onChange={(e) => setEditingProject({ ...editingProject, longDescription: e.target.value })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none resize-none"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none resize-none"
                         />
                       </div>
 
                       <div className="grid grid-cols-2 gap-6">
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">GitHub Repository URL</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">GitHub Repository URL</label>
                           <input
                             type="text"
                             value={editingProject.githubUrl}
                             onChange={(e) => setEditingProject({ ...editingProject, githubUrl: e.target.value })}
-                            className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                            className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                           />
                         </div>
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Live Demo URL</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Live Demo URL</label>
                           <input
                             type="text"
                             value={editingProject.demoUrl}
                             onChange={(e) => setEditingProject({ ...editingProject, demoUrl: e.target.value })}
-                            className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                            className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                           />
                         </div>
                       </div>
 
                       <div className="grid grid-cols-2 gap-6">
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Upload Project Thumbnail Image</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Upload Project Thumbnail Image</label>
                           <div className="flex flex-col gap-2">
                             <input
                               type="file"
                               accept="image/*"
                               onChange={(e) => handleFileUpload(e, "project.image")}
-                              className="text-xs text-[#809699] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#206F7A] file:text-white hover:file:bg-[#16535C] cursor-pointer"
+                              className="text-xs text-[#9CA3AF] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#06B6D4] file:text-white hover:file:bg-[#0891B2] cursor-pointer"
                             />
                             {editingProject.image && (
                               <button
@@ -953,20 +953,20 @@ export default function AdminDashboard() {
                           </div>
                         </div>
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Project Image Path / URL</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Project Image Path / URL</label>
                           <input
                             type="text"
                             value={editingProject.image || ""}
                             onChange={(e) => setEditingProject({ ...editingProject, image: e.target.value })}
                             placeholder="/my-project.jpg (optional)"
-                            className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                            className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                           />
                         </div>
                       </div>
 
                       {/* Tech strings list */}
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Tech stack (Comma separated)</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Tech stack (Comma separated)</label>
                         <input
                           type="text"
                           value={editingProject.tech.join(", ")}
@@ -974,13 +974,13 @@ export default function AdminDashboard() {
                             ...editingProject,
                             tech: e.target.value.split(",").map(t => t.trim())
                           })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                         />
                       </div>
 
                       {/* Features lists */}
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Features (One per line)</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Features (One per line)</label>
                         <textarea
                           rows={3}
                           value={editingProject.features.join("\n")}
@@ -988,7 +988,7 @@ export default function AdminDashboard() {
                             ...editingProject,
                             features: e.target.value.split("\n").map(f => f.trim()).filter(Boolean)
                           })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none resize-none"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none resize-none"
                         />
                       </div>
 
@@ -1008,13 +1008,13 @@ export default function AdminDashboard() {
                             setEditingProject(null);
                             showToast("success", "Project list updated. Hit Save!");
                           }}
-                          className="px-6 py-3 bg-[#206F7A] text-white font-bold text-xs tracking-wider uppercase rounded-xl hover:bg-[#16535C]"
+                          className="px-6 py-3 bg-[#06B6D4] text-white font-bold text-xs tracking-wider uppercase rounded-xl hover:bg-[#0891B2]"
                         >
                           Confirm update
                         </button>
                         <button
                           onClick={() => setEditingProject(null)}
-                          className="px-6 py-3 border border-[#142224] text-[#809699] font-bold text-xs tracking-wider uppercase rounded-xl hover:bg-[#14282B]"
+                          className="px-6 py-3 border border-[rgba(255,255,255,0.06)] text-[#9CA3AF] font-bold text-xs tracking-wider uppercase rounded-xl hover:bg-[#14282B]"
                         >
                           Cancel
                         </button>
@@ -1035,7 +1035,7 @@ export default function AdminDashboard() {
                         title: "Milestone Journey Title",
                         desc: "Short explanation description details..."
                       })}
-                      className="px-4 py-2.5 bg-[#206F7A] text-white font-bold text-xs tracking-wide rounded-xl hover:bg-[#16535C]"
+                      className="px-4 py-2.5 bg-[#06B6D4] text-white font-bold text-xs tracking-wide rounded-xl hover:bg-[#0891B2]"
                     >
                       + Add Journey Card
                     </button>
@@ -1046,10 +1046,10 @@ export default function AdminDashboard() {
                       {data.experience.map((exp: any, idx: number) => (
                         <div
                           key={idx}
-                          className="bg-[#0F1D20]/40 border border-[#142224] p-6 rounded-3xl flex justify-between items-center"
+                          className="bg-[#081013]/40 border border-[rgba(255,255,255,0.06)] p-6 rounded-2xl flex justify-between items-center"
                         >
                           <div>
-                            <span className="text-xs font-bold text-[#206F7A] uppercase tracking-wider">{exp.year}</span>
+                            <span className="text-xs font-bold text-[#06B6D4] uppercase tracking-wider">{exp.year}</span>
                             <h3 className="font-extrabold text-base mt-1">{exp.title}</h3>
                           </div>
                           
@@ -1077,12 +1077,12 @@ export default function AdminDashboard() {
                       ))}
                     </div>
                   ) : (
-                    <div className="bg-[#0F1D20]/50 border border-[#142224] p-8 rounded-[2.5rem] space-y-6">
-                      <div className="flex justify-between items-center border-b border-[#142224] pb-4">
-                        <h3 className="font-extrabold text-lg text-[#206F7A]">Timeline Card Editor</h3>
+                    <div className="bg-[#081013]/50 border border-[rgba(255,255,255,0.06)] p-8 rounded-2xl space-y-6">
+                      <div className="flex justify-between items-center border-b border-[rgba(255,255,255,0.06)] pb-4">
+                        <h3 className="font-extrabold text-lg text-[#06B6D4]">Timeline Card Editor</h3>
                         <button
                           onClick={() => setEditingExperience(null)}
-                          className="text-[#809699] hover:text-white font-bold text-xs"
+                          className="text-[#9CA3AF] hover:text-white font-bold text-xs"
                         >
                           Cancel / Back
                         </button>
@@ -1090,32 +1090,32 @@ export default function AdminDashboard() {
                       
                       <div className="grid grid-cols-4 gap-6">
                         <div className="col-span-1">
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Year</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Year</label>
                           <input
                             type="text"
                             value={editingExperience.year}
                             onChange={(e) => setEditingExperience({ ...editingExperience, year: e.target.value })}
-                            className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                            className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                           />
                         </div>
                         <div className="col-span-3">
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Journey Title</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Journey Title</label>
                           <input
                             type="text"
                             value={editingExperience.title}
                             onChange={(e) => setEditingExperience({ ...editingExperience, title: e.target.value })}
-                            className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                            className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Timeline Description</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Timeline Description</label>
                         <textarea
                           rows={3}
                           value={editingExperience.desc}
                           onChange={(e) => setEditingExperience({ ...editingExperience, desc: e.target.value })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none resize-none"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none resize-none"
                         />
                       </div>
 
@@ -1133,13 +1133,13 @@ export default function AdminDashboard() {
                             setEditingExperience(null);
                             showToast("success", "Timeline layout updated. Hit Save!");
                           }}
-                          className="px-6 py-3 bg-[#206F7A] text-white font-bold text-xs tracking-wider uppercase rounded-xl hover:bg-[#16535C]"
+                          className="px-6 py-3 bg-[#06B6D4] text-white font-bold text-xs tracking-wider uppercase rounded-xl hover:bg-[#0891B2]"
                         >
                           Save Journey
                         </button>
                         <button
                           onClick={() => setEditingExperience(null)}
-                          className="px-6 py-3 border border-[#142224] text-[#809699] font-bold text-xs tracking-wider uppercase rounded-xl hover:bg-[#14282B]"
+                          className="px-6 py-3 border border-[rgba(255,255,255,0.06)] text-[#9CA3AF] font-bold text-xs tracking-wider uppercase rounded-xl hover:bg-[#14282B]"
                         >
                           Cancel
                         </button>
@@ -1154,47 +1154,47 @@ export default function AdminDashboard() {
                 <div className="space-y-6">
                   <h2 className="text-2xl font-extrabold font-manrope">Statistics Counter</h2>
                   
-                  <div className="bg-[#0F1D20]/40 border border-[#142224] p-8 rounded-3xl space-y-6">
-                    <p className="text-xs text-[#809699]">Configure the counts to be displayed. Values accept strings (e.g. "10+").</p>
+                  <div className="bg-[#081013]/40 border border-[rgba(255,255,255,0.06)] p-8 rounded-2xl space-y-6">
+                    <p className="text-xs text-[#9CA3AF]">Configure the counts to be displayed. Values accept strings (e.g. "10+").</p>
                     
                     <div className="grid grid-cols-2 gap-6">
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Projects Completed</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Projects Completed</label>
                         <input
                           type="text"
                           value={data.stats.projects}
                           onChange={(e) => setData({ ...data, stats: { ...data.stats, projects: e.target.value } })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40"
                         />
                       </div>
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Years of Experience</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Years of Experience</label>
                         <input
                           type="text"
                           value={data.stats.experience}
                           onChange={(e) => setData({ ...data, stats: { ...data.stats, experience: e.target.value } })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40"
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-6">
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Dashboards Built</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Dashboards Built</label>
                         <input
                           type="text"
                           value={data.stats.dashboards}
                           onChange={(e) => setData({ ...data, stats: { ...data.stats, dashboards: e.target.value } })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40"
                         />
                       </div>
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Awards/Certificates</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Awards/Certificates</label>
                         <input
                           type="text"
                           value={data.stats.certifications}
                           onChange={(e) => setData({ ...data, stats: { ...data.stats, certifications: e.target.value } })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40"
                         />
                       </div>
                     </div>
@@ -1207,81 +1207,81 @@ export default function AdminDashboard() {
                 <div className="space-y-6">
                   <h2 className="text-2xl font-extrabold font-manrope">Contact & Social Links</h2>
                   
-                  <div className="bg-[#0F1D20]/40 border border-[#142224] p-8 rounded-3xl space-y-6">
+                  <div className="bg-[#081013]/40 border border-[rgba(255,255,255,0.06)] p-8 rounded-2xl space-y-6">
                     <div className="grid grid-cols-2 gap-6">
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Email Address</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Email Address</label>
                         <input
                           type="email"
                           value={data.contact.email}
                           onChange={(e) => setData({ ...data, contact: { ...data.contact, email: e.target.value } })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                         />
                       </div>
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Contact Phone</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Contact Phone</label>
                         <input
                           type="text"
                           value={data.contact.phone}
                           onChange={(e) => setData({ ...data, contact: { ...data.contact, phone: e.target.value } })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-6">
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Location Address</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Location Address</label>
                         <input
                           type="text"
                           value={data.contact.location}
                           onChange={(e) => setData({ ...data, contact: { ...data.contact, location: e.target.value } })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                         />
                       </div>
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Job Availability Status</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Job Availability Status</label>
                         <input
                           type="text"
                           value={data.contact.availability}
                           onChange={(e) => setData({ ...data, contact: { ...data.contact, availability: e.target.value } })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                         />
                       </div>
                     </div>
 
-                    <div className="border-t border-[#142224] pt-6 space-y-6">
+                    <div className="border-t border-[rgba(255,255,255,0.06)] pt-6 space-y-6">
                       <h4 className="text-sm font-bold">Social Media Profiles</h4>
                       
                       <div className="grid grid-cols-2 gap-6">
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">LinkedIn URL</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">LinkedIn URL</label>
                           <input
                             type="text"
                             value={data.contact.linkedin}
                             onChange={(e) => setData({ ...data, contact: { ...data.contact, linkedin: e.target.value } })}
-                            className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-xs text-white outline-none"
+                            className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-xs text-white outline-none"
                           />
                         </div>
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">GitHub URL</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">GitHub URL</label>
                           <input
                             type="text"
                             value={data.contact.github}
                             onChange={(e) => setData({ ...data, contact: { ...data.contact, github: e.target.value } })}
-                            className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-xs text-white outline-none"
+                            className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-xs text-white outline-none"
                           />
                         </div>
                       </div>
 
                       <div className="grid grid-cols-2 gap-6">
                         <div>
-                          <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">WhatsApp Number (e.g. 9151519662)</label>
+                          <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">WhatsApp Number (e.g. 9151519662)</label>
                           <input
                             type="text"
                             value={data.contact.whatsapp}
                             onChange={(e) => setData({ ...data, contact: { ...data.contact, whatsapp: e.target.value } })}
-                            className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                            className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                           />
                         </div>
                       </div>
@@ -1295,20 +1295,20 @@ export default function AdminDashboard() {
                 <div className="space-y-6">
                   <h2 className="text-2xl font-extrabold font-manrope">Resume Management</h2>
                   
-                  <div className="bg-[#0F1D20]/40 border border-[#142224] p-8 rounded-3xl space-y-6">
-                    <p className="text-xs text-[#809699]">Upload a new version of your PDF Resume file. This will automatically overwrite `public/resume.pdf` used by the homepage buttons.</p>
+                  <div className="bg-[#081013]/40 border border-[rgba(255,255,255,0.06)] p-8 rounded-2xl space-y-6">
+                    <p className="text-xs text-[#9CA3AF]">Upload a new version of your PDF Resume file. This will automatically overwrite `public/resume.pdf` used by the homepage buttons.</p>
                     
-                    <div className="p-8 border-2 border-dashed border-[#142224] hover:border-[#206F7A]/40 rounded-2xl flex flex-col items-center justify-center gap-3 transition-colors bg-[#060C0D]/50 relative">
-                      <svg className="w-10 h-10 text-[#809699]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                    <div className="p-8 border-2 border-dashed border-[rgba(255,255,255,0.06)] hover:border-[#06B6D4]/40 rounded-xl flex flex-col items-center justify-center gap-3 transition-colors bg-[#020405]/50 relative">
+                      <svg className="w-10 h-10 text-[#9CA3AF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 10.5v6m3-3H9m12-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                       
-                      <span className="text-xs text-[#809699] font-bold">Select PDF File</span>
+                      <span className="text-xs text-[#9CA3AF] font-bold">Select PDF File</span>
                       <input
                         type="file"
                         accept=".pdf"
                         onChange={(e) => handleFileUpload(e, "resume")}
-                        className="text-xs text-[#809699] file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-[#206F7A] file:text-white cursor-pointer"
+                        className="text-xs text-[#9CA3AF] file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-[#06B6D4] file:text-white cursor-pointer"
                       />
                     </div>
                   </div>
@@ -1334,15 +1334,15 @@ export default function AdminDashboard() {
                         setNewQA({ keywords: "", answer: "" });
                         showToast("success", "QA Rule added. Hit Save!");
                       }}
-                      className="px-4 py-2.5 bg-[#206F7A] text-white font-bold text-xs tracking-wide rounded-xl hover:bg-[#16535C]"
+                      className="px-4 py-2.5 bg-[#06B6D4] text-white font-bold text-xs tracking-wide rounded-xl hover:bg-[#0891B2]"
                     >
                       + Add QA Rule
                     </button>
                   </div>
 
                   {/* Add rule inline form */}
-                  <div className="bg-[#0F1D20]/40 border border-[#142224] p-8 rounded-3xl space-y-4">
-                    <h4 className="text-xs font-bold text-[#809699] uppercase tracking-wider">Create New Rule Card</h4>
+                  <div className="bg-[#081013]/40 border border-[rgba(255,255,255,0.06)] p-8 rounded-2xl space-y-4">
+                    <h4 className="text-xs font-bold text-[#9CA3AF] uppercase tracking-wider">Create New Rule Card</h4>
                     
                     <div className="grid grid-cols-2 gap-4">
                       <input
@@ -1350,14 +1350,14 @@ export default function AdminDashboard() {
                         placeholder="Keywords (e.g. GPA, grades, marks)"
                         value={newQA.keywords}
                         onChange={(e) => setNewQA({ ...newQA, keywords: e.target.value })}
-                        className="p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-xs text-white outline-none"
+                        className="p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-xs text-white outline-none"
                       />
                       <input
                         type="text"
                         placeholder="Answer response string"
                         value={newQA.answer}
                         onChange={(e) => setNewQA({ ...newQA, answer: e.target.value })}
-                        className="p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-xs text-white outline-none"
+                        className="p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-xs text-white outline-none"
                       />
                     </div>
                   </div>
@@ -1367,12 +1367,12 @@ export default function AdminDashboard() {
                     {data.chatbot.map((qa: any, idx: number) => (
                       <div
                         key={idx}
-                        className="bg-[#0F1D20]/20 border border-[#142224] p-6 rounded-2xl space-y-3"
+                        className="bg-[#081013]/20 border border-[rgba(255,255,255,0.06)] p-6 rounded-xl space-y-3"
                       >
                         <div className="flex justify-between items-start">
                           <div className="flex flex-wrap gap-1.5">
                             {qa.keywords.map((kw: string, kwIdx: number) => (
-                              <span key={kwIdx} className="text-[10px] font-bold text-[#206F7A] border border-[#206F7A]/30 bg-[#206F7A]/10 px-2 py-0.5 rounded-full">{kw}</span>
+                              <span key={kwIdx} className="text-[10px] font-bold text-[#06B6D4] border border-[#06B6D4]/30 bg-[#06B6D4]/10 px-2 py-0.5 rounded-full">{kw}</span>
                             ))}
                           </div>
                           
@@ -1387,7 +1387,7 @@ export default function AdminDashboard() {
                             Delete
                           </button>
                         </div>
-                        <p className="text-sm text-white/90 leading-relaxed bg-[#060C0D]/40 p-4 rounded-xl border border-[#142224]/50">{qa.answer}</p>
+                        <p className="text-sm text-white/90 leading-relaxed bg-[#020405]/40 p-4 rounded-xl border border-[rgba(255,255,255,0.06)]/50">{qa.answer}</p>
                       </div>
                     ))}
                   </div>
@@ -1399,29 +1399,29 @@ export default function AdminDashboard() {
                 <div className="space-y-6">
                   <h2 className="text-2xl font-extrabold font-manrope">SEO Page Settings</h2>
                   
-                  <div className="bg-[#0F1D20]/40 border border-[#142224] p-8 rounded-3xl space-y-6">
+                  <div className="bg-[#081013]/40 border border-[rgba(255,255,255,0.06)] p-8 rounded-2xl space-y-6">
                     <div>
-                      <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Browser Title Header</label>
+                      <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Browser Title Header</label>
                       <input
                         type="text"
                         value={data.seo.title}
                         onChange={(e) => setData({ ...data, seo: { ...data.seo, title: e.target.value } })}
-                        className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                        className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                       />
                     </div>
 
                     <div>
-                      <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Meta Description</label>
+                      <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Meta Description</label>
                       <textarea
                         rows={3}
                         value={data.seo.description}
                         onChange={(e) => setData({ ...data, seo: { ...data.seo, description: e.target.value } })}
-                        className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none resize-none"
+                        className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none resize-none"
                       />
                     </div>
 
                     <div>
-                      <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">SEO Keywords (Comma Separated)</label>
+                      <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">SEO Keywords (Comma Separated)</label>
                       <input
                         type="text"
                         value={data.seo.keywords.join(", ")}
@@ -1429,17 +1429,17 @@ export default function AdminDashboard() {
                           ...data,
                           seo: { ...data.seo, keywords: e.target.value.split(",").map(k => k.trim()) }
                         })}
-                        className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                        className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                       />
                     </div>
 
                     <div>
-                      <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Google Analytics Tracking ID (e.g. G-XXXXXXX)</label>
+                      <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Google Analytics Tracking ID (e.g. G-XXXXXXX)</label>
                       <input
                         type="text"
                         value={data.seo.googleAnalytics}
                         onChange={(e) => setData({ ...data, seo: { ...data.seo, googleAnalytics: e.target.value } })}
-                        className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                        className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                       />
                     </div>
                   </div>
@@ -1458,9 +1458,9 @@ export default function AdminDashboard() {
                             setData((prev: any) => ({
                               ...prev,
                               settings: {
-                                primaryColor: "#060C0D",
-                                accentColor: "#206F7A",
-                                accentHoverColor: "#16535C",
+                                primaryColor: "#020405",
+                                accentColor: "#06B6D4",
+                                accentHoverColor: "#0891B2",
                                 fonts: {
                                   heading: "Manrope",
                                   body: "Inter"
@@ -1484,17 +1484,17 @@ export default function AdminDashboard() {
                             showToast("success", "Unsaved changes discarded.");
                           }
                         }}
-                        className="px-4 py-2 border border-[#142224] hover:bg-[#14282B] text-xs font-bold rounded-xl transition-all"
+                        className="px-4 py-2 border border-[rgba(255,255,255,0.06)] hover:bg-[#14282B] text-xs font-bold rounded-xl transition-all"
                       >
                         Undo Unsaved Edits
                       </button>
                     </div>
                   </div>
                   
-                  <div className="bg-[#0F1D20]/40 border border-[#142224] p-8 rounded-3xl space-y-6">
+                  <div className="bg-[#081013]/40 border border-[rgba(255,255,255,0.06)] p-8 rounded-2xl space-y-6">
                     <div className="grid grid-cols-3 gap-6">
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Primary Color Hex</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Primary Color Hex</label>
                         <input
                           type="color"
                           value={data.settings.primaryColor}
@@ -1506,7 +1506,7 @@ export default function AdminDashboard() {
                         />
                       </div>
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Teal Accent Hex</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Teal Accent Hex</label>
                         <input
                           type="color"
                           value={data.settings.accentColor}
@@ -1518,7 +1518,7 @@ export default function AdminDashboard() {
                         />
                       </div>
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Accent Hover Hex</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Accent Hover Hex</label>
                         <input
                           type="color"
                           value={data.settings.accentHoverColor}
@@ -1533,7 +1533,7 @@ export default function AdminDashboard() {
 
                     <div className="grid grid-cols-2 gap-6">
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Heading Font Families</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Heading Font Families</label>
                         <input
                           type="text"
                           value={data.settings.fonts.heading}
@@ -1541,11 +1541,11 @@ export default function AdminDashboard() {
                             ...data,
                             settings: { ...data.settings, fonts: { ...data.settings.fonts, heading: e.target.value } }
                           })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                         />
                       </div>
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Body Font Families</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">Body Font Families</label>
                         <input
                           type="text"
                           value={data.settings.fonts.body}
@@ -1553,13 +1553,13 @@ export default function AdminDashboard() {
                             ...data,
                             settings: { ...data.settings, fonts: { ...data.settings.fonts, body: e.target.value } }
                           })}
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none"
                         />
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-6 border-t border-[#142224] pt-6">
-                      <div className="flex items-center justify-between p-4 bg-[#060C0D] border border-[#142224] rounded-2xl">
+                    <div className="grid grid-cols-2 gap-6 border-t border-[rgba(255,255,255,0.06)] pt-6">
+                      <div className="flex items-center justify-between p-4 bg-[#020405] border border-[rgba(255,255,255,0.06)] rounded-xl">
                         <span className="text-xs font-bold">Particles Overlay Background</span>
                         <input
                           type="checkbox"
@@ -1568,10 +1568,10 @@ export default function AdminDashboard() {
                             ...data,
                             settings: { ...data.settings, particlesEnabled: e.target.checked }
                           })}
-                          className="w-4 h-4 accent-[#206F7A]"
+                          className="w-4 h-4 accent-[#06B6D4]"
                         />
                       </div>
-                      <div className="flex items-center justify-between p-4 bg-[#060C0D] border border-[#142224] rounded-2xl">
+                      <div className="flex items-center justify-between p-4 bg-[#020405] border border-[rgba(255,255,255,0.06)] rounded-xl">
                         <span className="text-xs font-bold">Ambient Glow Blobs background</span>
                         <input
                           type="checkbox"
@@ -1580,19 +1580,19 @@ export default function AdminDashboard() {
                             ...data,
                             settings: { ...data.settings, glowsEnabled: e.target.checked }
                           })}
-                          className="w-4 h-4 accent-[#206F7A]"
+                          className="w-4 h-4 accent-[#06B6D4]"
                         />
                       </div>
                     </div>
 
-                    <div className="border-t border-[#142224] pt-6 space-y-4">
-                      <h4 className="text-xs font-bold text-[#809699] uppercase tracking-wider">GitHub Sync Configuration</h4>
-                      <p className="text-[10px] text-[#809699]/70 leading-relaxed font-semibold">
+                    <div className="border-t border-[rgba(255,255,255,0.06)] pt-6 space-y-4">
+                      <h4 className="text-xs font-bold text-[#9CA3AF] uppercase tracking-wider">GitHub Sync Configuration</h4>
+                      <p className="text-[10px] text-[#9CA3AF]/70 leading-relaxed font-semibold">
                         Enter your GitHub Personal Access Token (PAT) with `repo` permissions to commit changes back to your repository on Cloudflare. 
                         It is saved securely in your browser's LocalStorage and never committed to code.
                       </p>
                       <div>
-                        <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">GitHub Personal Access Token (PAT)</label>
+                        <label className="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider block mb-2">GitHub Personal Access Token (PAT)</label>
                         <input
                           type="password"
                           value={githubToken}
@@ -1601,7 +1601,7 @@ export default function AdminDashboard() {
                             localStorage.setItem("github_token", e.target.value);
                           }}
                           placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-                          className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40"
+                          className="w-full p-4 rounded-xl bg-[#020405] border border-[rgba(255,255,255,0.06)] text-sm text-white outline-none focus:border-[#06B6D4]/40"
                         />
                       </div>
                     </div>
@@ -1622,9 +1622,9 @@ export default function AdminDashboard() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 30 }}
-            className={`fixed bottom-6 right-6 z-50 px-6 py-4 rounded-2xl font-bold text-xs shadow-2xl border ${
+            className={`fixed bottom-6 right-6 z-50 px-6 py-4 rounded-xl font-bold text-xs shadow-2xl border ${
               toast.type === "success"
-                ? "bg-[#0F1D20]/90 text-white border-[#206F7A]/40"
+                ? "bg-[#081013]/90 text-white border-[#06B6D4]/40"
                 : "bg-red-950/90 text-red-300 border-red-900/40"
             }`}
           >
