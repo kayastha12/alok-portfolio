@@ -11,6 +11,10 @@ interface AboutProps {
     paragraph2: string;
     highlightText: string;
     avatarSrc: string;
+    stats?: {
+      value: string;
+      label: string;
+    }[];
   };
 }
 
@@ -21,6 +25,12 @@ export default function About({ data }: AboutProps) {
   const paragraph2 = data?.paragraph2 || "My technical focus is at the intersection of AI integration and Data Analytics. I build intelligent helpers powered by LLM endpoints, deploy custom voice automation agents, and transform transactional databases into business intelligence reporting systems using Power BI Desktop and advanced DAX modeling.";
   const highlightText = data?.highlightText || "Combining mobile engineering, machine learning pipelines, and data visualization to construct reliable digital products.";
   const avatarSrc = data?.avatarSrc || "/profile.jpg";
+
+  const stats = data?.stats || [
+    { value: "10+", label: "Completed Projects" },
+    { value: "SW / AI", label: "Developer Focus" },
+    { value: "MCA", label: "Academic Scholar" }
+  ];
 
   return (
     <section
@@ -82,31 +92,20 @@ export default function About({ data }: AboutProps) {
 
           {/* Stats Grid */}
           <div className="grid grid-cols-3 gap-4 mt-12 w-full">
-            
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="bg-luxury-card border border-luxury-border rounded-2xl p-5 text-center shadow-[0_4px_15px_rgba(0,0,0,0.01)] hover:border-luxury-accent/30 transition-all duration-300"
-            >
-              <h3 className="text-2xl md:text-3xl font-extrabold text-luxury-text">10+</h3>
-              <p className="text-luxury-muted text-xs md:text-sm mt-1 font-medium">Completed Projects</p>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="bg-luxury-card border border-luxury-border rounded-2xl p-5 text-center shadow-[0_4px_15px_rgba(0,0,0,0.01)] hover:border-luxury-accent/30 transition-all duration-300"
-            >
-              <h3 className="text-2xl md:text-3xl font-extrabold text-luxury-text font-mono">SW / AI</h3>
-              <p className="text-luxury-muted text-xs md:text-sm mt-1 font-medium">Developer Focus</p>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="bg-luxury-card border border-luxury-border rounded-2xl p-5 text-center shadow-[0_4px_15px_rgba(0,0,0,0.01)] hover:border-luxury-accent/30 transition-all duration-300"
-            >
-              <h3 className="text-2xl md:text-3xl font-extrabold text-luxury-text">MCA</h3>
-              <p className="text-luxury-muted text-xs md:text-sm mt-1 font-medium">Academic Scholar</p>
-            </motion.div>
-
+            {stats.map((stat, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ y: -5 }}
+                className="bg-luxury-card border border-luxury-border rounded-2xl p-5 text-center shadow-[0_4px_15px_rgba(0,0,0,0.01)] hover:border-luxury-accent/30 transition-all duration-300"
+              >
+                <h3 className="text-2xl md:text-3xl font-extrabold text-luxury-text">
+                  {stat.value}
+                </h3>
+                <p className="text-luxury-muted text-xs md:text-sm mt-1 font-medium">
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
 

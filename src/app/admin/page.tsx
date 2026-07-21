@@ -558,6 +558,64 @@ export default function AdminDashboard() {
                         className="w-full p-4 rounded-xl bg-[#060C0D] border border-[#142224] text-sm text-white outline-none focus:border-[#206F7A]/40 resize-none"
                       />
                     </div>
+
+                    {/* Stats / Cards Grid section */}
+                    <div className="border-t border-[#142224] pt-6 space-y-6">
+                      <h4 className="text-sm font-bold">Key Stats Cards</h4>
+                      <p className="text-xs text-[#809699]">Edit the three key statistic card values and labels visible on the About section.</p>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {(data.about.stats || [
+                          { value: "10+", label: "Completed Projects" },
+                          { value: "SW / AI", label: "Developer Focus" },
+                          { value: "MCA", label: "Academic Scholar" }
+                        ]).map((stat: any, index: number) => (
+                          <div key={index} className="bg-[#060C0D] border border-[#142224] p-4 rounded-2xl space-y-3">
+                            <span className="text-[9px] bg-[#206F7A]/20 text-[#206F7A] border border-[#206F7A]/30 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Card {index + 1}</span>
+                            <div>
+                              <label className="text-[9px] font-bold text-[#809699] uppercase tracking-wider block mb-1">Card Value</label>
+                              <input
+                                type="text"
+                                value={stat.value}
+                                onChange={(e) => {
+                                  const currentStats = data.about.stats ? [...data.about.stats] : [
+                                    { value: "10+", label: "Completed Projects" },
+                                    { value: "SW / AI", label: "Developer Focus" },
+                                    { value: "MCA", label: "Academic Scholar" }
+                                  ];
+                                  currentStats[index].value = e.target.value;
+                                  setData({
+                                    ...data,
+                                    about: { ...data.about, stats: currentStats }
+                                  });
+                                }}
+                                className="w-full p-2.5 rounded-xl bg-[#070D0E] border border-[#142224] text-xs text-white outline-none focus:border-[#206F7A]/40"
+                              />
+                            </div>
+                            <div>
+                              <label className="text-[9px] font-bold text-[#809699] uppercase tracking-wider block mb-1">Card Label</label>
+                              <input
+                                type="text"
+                                value={stat.label}
+                                onChange={(e) => {
+                                  const currentStats = data.about.stats ? [...data.about.stats] : [
+                                    { value: "10+", label: "Completed Projects" },
+                                    { value: "SW / AI", label: "Developer Focus" },
+                                    { value: "MCA", label: "Academic Scholar" }
+                                  ];
+                                  currentStats[index].label = e.target.value;
+                                  setData({
+                                    ...data,
+                                    about: { ...data.about, stats: currentStats }
+                                  });
+                                }}
+                                className="w-full p-2.5 rounded-xl bg-[#070D0E] border border-[#142224] text-xs text-white outline-none focus:border-[#206F7A]/40"
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}

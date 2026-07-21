@@ -36,7 +36,21 @@
     "paragraph1": "I am a dedicated MCA student at GNIOT Group of Institutions, Greater Noida, with a strong foundation in computer applications (BCA from MGKVP, Varanasi). I specialize in developing cross-platform mobile applications using Flutter and implementing reliable backend solutions with Firebase.",
     "paragraph2": "My technical focus is at the intersection of AI integration and Data Analytics. I build intelligent helpers powered by LLM endpoints, deploy custom voice automation agents, and transform transactional databases into business intelligence reporting systems using Power BI Desktop and advanced DAX modeling.",
     "highlightText": "Combining mobile engineering, machine learning pipelines, and data visualization to construct reliable digital products.",
-    "avatarSrc": "/profile.jpg"
+    "avatarSrc": "/profile.jpg",
+    "stats": [
+      {
+        "value": "10+",
+        "label": "Completed Projects"
+      },
+      {
+        "value": "SW / AI",
+        "label": "Developer Focus"
+      },
+      {
+        "value": "MCA",
+        "label": "Academic Scholar"
+      }
+    ]
   },
   "whyChoose": {
     "badge": "Philosophy",
