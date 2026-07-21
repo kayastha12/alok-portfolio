@@ -95,13 +95,13 @@ export default function About({ data }: AboutProps) {
             {stats.map((stat, idx) => (
               <motion.div
                 key={idx}
-                whileHover={{ y: -5 }}
-                className="bg-luxury-card border border-luxury-border rounded-2xl p-5 text-center shadow-[0_4px_15px_rgba(0,0,0,0.01)] hover:border-luxury-accent/30 transition-all duration-300"
+                whileHover={{ y: -3 }}
+                className="bg-luxury-card border border-luxury-border rounded-xl p-4.5 text-center shadow-sm hover:border-luxury-accent/25 hover:shadow-[0_8px_24px_rgba(6,182,212,0.03),inset_0_1px_0_rgba(255,255,255,0.05)] transition-all duration-300"
               >
-                <h3 className="text-2xl md:text-3xl font-extrabold text-luxury-text">
+                <h3 className="text-xl md:text-2xl font-black text-luxury-text tracking-tight">
                   {stat.value}
                 </h3>
-                <p className="text-luxury-muted text-xs md:text-sm mt-1 font-medium">
+                <p className="text-luxury-muted text-[10px] md:text-xs mt-1 font-medium">
                   {stat.label}
                 </p>
               </motion.div>

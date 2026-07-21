@@ -73,7 +73,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.4 }}
-              className="w-full bg-luxury-card border border-luxury-border/60 rounded-[2.5rem] p-8 md:p-12 shadow-[0_12px_45px_rgba(0,0,0,0.015)] flex flex-col justify-between items-center text-center"
+              className="w-full bg-luxury-card border border-luxury-border rounded-2xl p-8 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.05),0_10px_20px_rgba(0,0,0,0.02)] flex flex-col justify-between items-center text-center"
             >
               {/* Double Quote Icon */}
               <div className="text-luxury-accent/20 mb-6">

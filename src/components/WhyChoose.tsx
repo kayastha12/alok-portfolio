@@ -93,11 +93,11 @@ export default function WhyChoose({ data }: WhyChooseProps) {
             {items.map((item, idx) => (
               <motion.div
                 key={idx}
-                whileHover={{ y: -4 }}
-                className="bg-luxury-card border border-luxury-border/60 rounded-3xl p-6.5 text-left shadow-[0_8px_30px_rgba(0,0,0,0.01)] hover:border-luxury-accent/25 transition-all duration-300 flex flex-col justify-between"
+                whileHover={{ y: -3 }}
+                className="bg-luxury-card border border-luxury-border rounded-2xl p-6 text-left shadow-[0_1px_3px_rgba(0,0,0,0.05),0_10px_20px_rgba(0,0,0,0.02)] hover:border-luxury-accent/30 hover:shadow-[0_10px_30px_rgba(6,182,212,0.04),inset_0_1px_0_rgba(255,255,255,0.05)] transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="p-3.5 rounded-2xl bg-luxury-bg border border-luxury-border/40 w-fit mb-5">
+                  <div className="p-3 rounded-xl bg-luxury-bg border border-luxury-border/60 w-fit mb-5">
                     {getIcon(idx)}
                   </div>
                   <h3 className="font-extrabold text-base text-luxury-text mb-2 font-manrope">

@@ -119,39 +119,39 @@ export default function Skills({ data }: SkillsProps) {
         </div>
 
         {/* Skills Categories Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {categories.map((category, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              whileHover={{ y: -6 }}
+              whileHover={{ y: -4 }}
               transition={{ duration: 0.3 }}
-              className="relative flex flex-col justify-between rounded-[2rem] p-8 border border-luxury-border/60 bg-luxury-card shadow-[0_8px_30px_rgba(0,0,0,0.01)] hover:border-luxury-accent/25 transition-all duration-300"
+              className="relative flex flex-col justify-between rounded-2xl p-6.5 border border-luxury-border bg-luxury-card shadow-[0_1px_3px_rgba(0,0,0,0.05),0_10px_20px_rgba(0,0,0,0.02)] hover:border-luxury-accent/30 hover:shadow-[0_10px_30px_rgba(6,182,212,0.04),inset_0_1px_0_rgba(255,255,255,0.05)] transition-all duration-300"
             >
               <div>
                 {/* Header Row */}
-                <div className="flex justify-between items-start mb-6">
-                  <div className="p-3.5 rounded-2xl bg-luxury-bg border border-luxury-border/40">
+                <div className="flex justify-between items-start mb-5">
+                  <div className="p-3 rounded-xl bg-luxury-bg border border-luxury-border/60">
                     {renderIcon(category.icon)}
                   </div>
                 </div>
 
                 {/* Title & Description */}
-                <h3 className="text-lg font-bold text-luxury-text mb-2 leading-snug font-manrope">
+                <h3 className="text-base font-bold text-luxury-text mb-2 tracking-tight font-manrope">
                   {category.title}
                 </h3>
-                <p className="text-sm text-luxury-muted leading-relaxed mb-6 font-semibold">
+                <p className="text-xs text-luxury-muted leading-relaxed mb-5 font-semibold">
                   {category.description}
                 </p>
 
                 {/* Skills Tags List */}
-                <div className="flex flex-wrap gap-2.5">
-                  {category.skills.map((skill, idx) => (
+                <div className="flex flex-wrap gap-2">
+                  {category.skills?.map((skill, idx) => (
                     <span
                       key={idx}
-                      className="px-3.5 py-1.5 rounded-full bg-luxury-bg border border-luxury-border text-xs font-bold text-luxury-text hover:border-luxury-accent/30 cursor-default transition-colors duration-200"
+                      className="px-3 py-1 rounded-lg bg-luxury-bg border border-luxury-border text-[10px] font-bold text-luxury-text hover:border-luxury-accent/25 hover:text-luxury-accent cursor-default transition-all duration-200"
                     >
                       {skill}
                     </span>

@@ -7,6 +7,7 @@ import { useTheme } from "@/components/ThemeProvider";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const { theme, toggleTheme } = useTheme();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -18,6 +19,21 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+      
+      const sections = ["home", "about", "skills", "projects", "experience", "contact"];
+      const scrollPosition = window.scrollY + 180;
+      
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -34,46 +50,56 @@ export default function Navbar() {
 
       <div className="max-w-7xl mx-auto px-6 pt-5 relative">
         <div
-          className={`flex items-center justify-between px-8 py-3.5 rounded-full border transition-all duration-500
+          className={`flex items-center justify-between px-8 py-3 rounded-full border transition-all duration-500
             ${
               scrolled
-                ? "bg-luxury-card/80 border-luxury-border/60 shadow-[0_8px_32px_0_rgba(36,93,102,0.04)] backdrop-blur-md"
-                : "bg-luxury-card/30 border-transparent"
+                ? "bg-luxury-card/75 dark:bg-luxury-card/65 border-luxury-border/60 shadow-[0_4px_24px_rgba(0,0,0,0.06),0_1px_2px_rgba(0,0,0,0.02)] backdrop-blur-xl"
+                : "bg-transparent border-transparent"
             }
           `}
         >
           <a
             href="#home"
-            className="text-xl font-extrabold text-luxury-text tracking-tight hover:text-luxury-accent transition-colors"
+            className="text-lg font-black text-luxury-text tracking-tight hover:text-luxury-accent transition-colors"
           >
             Alok S.
           </a>
 
-          <ul className="hidden md:flex items-center gap-8 text-sm font-semibold text-luxury-text/80">
-            <li>
-              <a href="#about" className="hover:text-luxury-accent transition-colors duration-300">About</a>
-            </li>
-            <li>
-              <a href="#skills" className="hover:text-luxury-accent transition-colors duration-300">Skills</a>
-            </li>
-            <li>
-              <a href="#projects" className="hover:text-luxury-accent transition-colors duration-300">Projects</a>
-            </li>
-            <li>
-              <a href="#experience" className="hover:text-luxury-accent transition-colors duration-300">Journey</a>
-            </li>
-            <li>
-              <a href="#contact" className="hover:text-luxury-accent transition-colors duration-300">Contact</a>
-            </li>
+          <ul className="hidden md:flex items-center gap-7 text-[11px] font-bold uppercase tracking-wider">
+            {[
+              { id: "about", label: "About" },
+              { id: "skills", label: "Skills" },
+              { id: "projects", label: "Projects" },
+              { id: "experience", label: "Journey" },
+              { id: "contact", label: "Contact" }
+            ].map((item) => (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  className={`relative py-1 transition-colors duration-300 ${
+                    activeSection === item.id ? "text-luxury-accent" : "text-luxury-text/60 hover:text-luxury-text"
+                  }`}
+                >
+                  {item.label}
+                  {activeSection === item.id && (
+                    <motion.div
+                      layoutId="activeIndicator"
+                      className="absolute bottom-0 left-0 w-full h-[1.5px] bg-luxury-accent rounded-full"
+                      transition={{ type: "spring", stiffness: 350, damping: 28 }}
+                    />
+                  )}
+                </a>
+              </li>
+            ))}
           </ul>
 
           <div className="flex items-center gap-3">
             {/* AI Toggle Button */}
             <motion.button
               onClick={() => window.dispatchEvent(new CustomEvent("toggle-chatbot"))}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 rounded-xl border border-luxury-border flex items-center justify-center text-luxury-text hover:bg-luxury-hover hover:text-luxury-accent transition-colors font-extrabold text-xs tracking-wider"
+              whileHover={{ y: -1, scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              className="w-9 h-9 rounded-xl border border-luxury-border/80 bg-luxury-card/30 flex items-center justify-center text-luxury-text hover:bg-luxury-card hover:border-luxury-accent/30 hover:text-luxury-accent shadow-sm transition-all duration-300 font-extrabold text-xs tracking-wider"
               aria-label="Toggle AI Assistant"
             >
               AI
@@ -82,9 +108,9 @@ export default function Navbar() {
             {/* Theme Toggle Button */}
             <motion.button
               onClick={toggleTheme}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 rounded-xl border border-luxury-border flex items-center justify-center text-luxury-text hover:bg-luxury-hover transition-colors"
+              whileHover={{ y: -1, scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              className="w-9 h-9 rounded-xl border border-luxury-border/80 bg-luxury-card/30 flex items-center justify-center text-luxury-text hover:bg-luxury-card hover:border-luxury-accent/30 hover:text-luxury-accent shadow-sm transition-all duration-300"
               aria-label="Toggle Theme"
             >
               {theme === "light" ? (
@@ -101,11 +127,11 @@ export default function Navbar() {
             <motion.a
               href="/resume.pdf"
               download
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="hidden sm:flex items-center px-5 h-10 rounded-xl border border-luxury-border hover:bg-luxury-hover text-luxury-text font-bold text-xs tracking-wide transition-colors"
+              whileHover={{ y: -1, scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              className="hidden sm:flex items-center px-4.5 h-9 rounded-xl border border-luxury-border/80 bg-luxury-card/30 hover:bg-luxury-card hover:border-luxury-accent/30 text-luxury-text font-bold text-xs tracking-wide shadow-sm transition-all duration-300"
             >
-              <svg className="w-4 h-4 mr-2 stroke-current fill-none" strokeWidth="2" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 mr-1.5 stroke-current fill-none text-luxury-muted" strokeWidth="2.5" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               Resume
@@ -113,11 +139,11 @@ export default function Navbar() {
 
             <motion.a
               href="#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="hidden xs:flex items-center px-5 h-10 rounded-xl bg-luxury-accent text-white font-bold text-xs tracking-wide shadow-[0_4px_15px_rgba(36,93,102,0.25)] hover:bg-luxury-accent-hover transition-all duration-300"
+              whileHover={{ y: -1, scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              className="hidden xs:flex items-center px-4.5 h-9 rounded-xl bg-luxury-accent text-white font-bold text-xs tracking-wide shadow-[0_1px_2px_rgba(0,0,0,0.05),0_4px_12px_rgba(6,182,212,0.15)] hover:bg-luxury-accent-hover hover:shadow-[0_1px_2px_rgba(0,0,0,0.05),0_6px_16px_rgba(6,182,212,0.22)] transition-all duration-300"
             >
-              <svg className="w-4 h-4 mr-2 stroke-current fill-none" strokeWidth="2" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 mr-1.5 stroke-current fill-none" strokeWidth="2.5" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
               </svg>
               Contact
@@ -126,9 +152,9 @@ export default function Navbar() {
             {/* Mobile Navigation Toggle Button */}
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 rounded-xl border border-luxury-border flex md:hidden items-center justify-center text-luxury-text hover:bg-luxury-hover transition-colors"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="w-9 h-9 rounded-xl border border-luxury-border/80 bg-luxury-card/30 flex md:hidden items-center justify-center text-luxury-text hover:bg-luxury-card transition-colors"
               aria-label="Toggle Mobile Menu"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -146,11 +172,11 @@ export default function Navbar() {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: -15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden absolute top-[5.2rem] left-6 right-6 bg-[#0E1B1D]/95 border border-luxury-border/60 rounded-[2rem] p-6 backdrop-blur-xl shadow-2xl flex flex-col gap-3.5 z-40"
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25 }}
+              className="md:hidden absolute top-[5.2rem] left-6 right-6 bg-[#030708]/95 dark:bg-[#081013]/95 border border-luxury-border/60 rounded-[2rem] p-6 backdrop-blur-xl shadow-2xl flex flex-col gap-3 z-40"
             >
               {[
                 { href: "#about", label: "About" },
@@ -163,7 +189,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-sm font-bold text-luxury-text/90 hover:text-luxury-accent px-3 py-2.5 rounded-xl border-b border-luxury-border/20 transition-all block"
+                  className="text-xs font-bold uppercase tracking-wider text-luxury-text/90 hover:text-luxury-accent px-3 py-2.5 rounded-xl border-b border-luxury-border/20 transition-all block"
                 >
                   {link.label}
                 </a>
@@ -172,14 +198,14 @@ export default function Navbar() {
                 href="/resume.pdf"
                 download
                 onClick={() => setIsOpen(false)}
-                className="text-sm font-bold text-luxury-accent px-3 py-2.5 rounded-xl border-b border-luxury-border/20 flex items-center gap-2"
+                className="text-xs font-bold uppercase tracking-wider text-luxury-accent px-3 py-2.5 rounded-xl border-b border-luxury-border/20 flex items-center gap-2"
               >
                   Download Resume
               </a>
               <a
                 href="/admin"
                 onClick={() => setIsOpen(false)}
-                className="text-sm font-bold text-[#809699] px-3 py-2.5 block"
+                className="text-xs font-bold uppercase tracking-wider text-luxury-muted px-3 py-2.5 block"
               >
                  Admin Portal
               </a>

@@ -89,11 +89,11 @@ export default function Experience({ data }: ExperienceProps) {
                   ml-12 md:ml-0
                   md:w-[45%]
                   bg-luxury-card
-                  border border-luxury-border/60
-                  rounded-[2rem]
-                  p-8
-                  shadow-[0_8px_30px_rgba(0,0,0,0.015)]
-                  hover:border-luxury-accent/25 hover:shadow-[0_20px_50px_rgba(36,93,102,0.02)]
+                  border border-luxury-border
+                  rounded-2xl
+                  p-6
+                  shadow-[0_1px_3px_rgba(0,0,0,0.05),0_10px_20px_rgba(0,0,0,0.02)]
+                  hover:border-luxury-accent/30 hover:shadow-[0_10px_30px_rgba(6,182,212,0.04),inset_0_1px_0_rgba(255,255,255,0.05)]
                   transition-all duration-300
                 "
               >

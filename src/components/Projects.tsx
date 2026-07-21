@@ -115,63 +115,63 @@ export default function Projects({ data }: ProjectsProps) {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              whileHover={{ y: -8 }}
+              whileHover={{ y: -4 }}
               transition={{ duration: 0.3 }}
               onClick={() => handleProjectClick(project)}
               className="
                 relative flex flex-col justify-between
                 overflow-hidden
-                rounded-[2.5rem]
-                border border-luxury-border/60
+                rounded-2xl
+                border border-luxury-border
                 bg-luxury-card
-                p-8
-                shadow-[0_12px_45px_rgba(0,0,0,0.015)]
-                hover:border-luxury-accent/25 hover:shadow-[0_20px_50px_rgba(36,93,102,0.03)]
+                p-6
+                shadow-[0_1px_3px_rgba(0,0,0,0.05),0_10px_20px_rgba(0,0,0,0.02)]
+                hover:border-luxury-accent/30 hover:shadow-[0_12px_36px_rgba(6,182,212,0.04),inset_0_1px_0_rgba(255,255,255,0.05)]
                 transition-all duration-300
                 cursor-pointer
-                h-full flex flex-col justify-between
+                h-full
               "
             >
               <div>
                 {project.image && (
-                  <div className="relative w-full h-[180px] rounded-[1.5rem] overflow-hidden mb-6 bg-luxury-bg border border-luxury-border/30">
+                  <div className="relative w-full h-[190px] rounded-xl overflow-hidden mb-5 bg-luxury-bg border border-luxury-border/40">
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover hover:scale-105 transition-transform duration-500"
+                      className="object-cover hover:scale-103 transition-transform duration-500"
                     />
                   </div>
                 )}
                 {/* Tech Tags & Links Row */}
-                <div className="flex justify-between items-start mb-6">
-                  <div className="flex flex-wrap gap-2">
+                <div className="flex justify-between items-start mb-5">
+                  <div className="flex flex-wrap gap-1.5">
                     {project.tech.slice(0, 3).map((t, idx) => (
                       <span 
                         key={idx} 
-                        className="px-3.5 py-1.5 rounded-full bg-luxury-bg border border-luxury-border text-[10px] font-bold text-luxury-text"
+                        className="px-2.5 py-1 rounded-md bg-luxury-bg border border-luxury-border text-[9px] font-bold text-luxury-text"
                       >
                         {t}
                       </span>
                     ))}
                     {project.tech.length > 3 && (
-                      <span className="px-3.5 py-1.5 rounded-full bg-luxury-bg border border-luxury-border text-[10px] font-bold text-luxury-text">
+                      <span className="px-2.5 py-1 rounded-md bg-luxury-bg border border-luxury-border text-[9px] font-bold text-luxury-text">
                         +{project.tech.length - 3}
                       </span>
                     )}
                   </div>
 
-                  <div className="flex gap-2">
+                  <div className="flex gap-1.5">
                     {project.githubUrl && project.githubUrl !== "" && project.githubUrl !== "#contact" && (
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="p-2 rounded-xl bg-luxury-bg border border-luxury-border text-luxury-text hover:text-luxury-accent hover:border-luxury-accent/30 transition-colors"
+                        className="p-1.5 rounded-lg bg-luxury-bg border border-luxury-border text-luxury-muted hover:text-luxury-accent hover:border-luxury-accent/30 transition-colors"
                         title="GitHub Repository Link"
                       >
                         <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -186,7 +186,7 @@ export default function Projects({ data }: ProjectsProps) {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="p-2 rounded-xl bg-luxury-bg border border-luxury-border text-luxury-text hover:text-luxury-accent hover:border-luxury-accent/30 transition-colors"
+                        className="p-1.5 rounded-lg bg-luxury-bg border border-luxury-border text-luxury-muted hover:text-luxury-accent hover:border-luxury-accent/30 transition-colors"
                         title="Live Demo Link"
                       >
                         <svg className="w-3.5 h-3.5 stroke-current fill-none" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -198,20 +198,20 @@ export default function Projects({ data }: ProjectsProps) {
                 </div>
 
                 {/* Title & Description */}
-                <h3 className="text-2xl font-extrabold text-luxury-text mb-4 leading-snug font-manrope">
+                <h3 className="text-lg font-bold text-luxury-text mb-2.5 leading-snug font-manrope">
                   {project.title}
                 </h3>
 
-                <p className="text-luxury-muted text-sm md:text-base leading-relaxed font-semibold">
+                <p className="text-xs text-luxury-muted leading-relaxed font-semibold mb-6">
                   {project.description}
                 </p>
               </div>
 
               {/* Interaction prompt */}
-              <div className="flex items-center justify-between pt-6 border-t border-luxury-border/60 text-xs font-bold text-luxury-accent group">
-                <span>View Project Case</span>
-                <div className="w-6 h-6 rounded-full bg-luxury-bg border border-luxury-border/80 flex items-center justify-center group-hover:bg-luxury-accent group-hover:text-white transition-colors duration-300">
-                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+              <div className="flex items-center justify-between pt-4 border-t border-luxury-border text-[10px] font-bold text-luxury-accent/90 uppercase tracking-wider group">
+                <span>View Case Study</span>
+                <div className="w-6 h-6 rounded-full bg-luxury-bg border border-luxury-border flex items-center justify-center group-hover:bg-luxury-accent group-hover:text-white transition-all duration-300">
+                  <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
