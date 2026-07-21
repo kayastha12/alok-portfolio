@@ -623,12 +623,44 @@ export default function AdminDashboard() {
               {/* 4. SKILLS SECTION */}
               {activeTab === "skills" && (
                 <div className="space-y-6">
-                  <h2 className="text-2xl font-extrabold font-manrope">Technical Expertise</h2>
+                  <div className="flex justify-between items-center">
+                    <h2 className="text-2xl font-extrabold font-manrope">Technical Expertise</h2>
+                    <button
+                      onClick={() => {
+                        const updated = [...data.skills, {
+                          title: "New Skill Category",
+                          description: "Description of expertise area",
+                          skills: ["Sample Tag"],
+                          icon: "Tools"
+                        }];
+                        setData({ ...data, skills: updated });
+                        showToast("success", "New skill category added. Hit Save Changes!");
+                      }}
+                      className="px-4 py-2.5 bg-[#206F7A] text-white font-bold text-xs tracking-wide rounded-xl hover:bg-[#16535C]"
+                    >
+                      + Add Skill Category
+                    </button>
+                  </div>
                   
                   {data.skills.map((category: any, catIdx: number) => (
                     <div key={catIdx} className="bg-[#0F1D20]/40 border border-[#142224] p-8 rounded-3xl space-y-6">
                       <div className="flex justify-between items-center">
-                        <h3 className="font-extrabold text-base text-[#206F7A]">{category.title}</h3>
+                        <div className="flex items-center gap-3">
+                          <h3 className="font-extrabold text-base text-[#206F7A]">{category.title}</h3>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              if (confirm(`Are you sure you want to delete the "${category.title}" category?`)) {
+                                const updated = data.skills.filter((_: any, idx: number) => idx !== catIdx);
+                                setData({ ...data, skills: updated });
+                                showToast("success", "Category deleted. Hit Save Changes!");
+                              }
+                            }}
+                            className="px-2.5 py-1 rounded-lg bg-red-950/20 border border-red-900/30 text-red-400 font-bold text-[10px] hover:bg-red-900/40 transition-colors"
+                          >
+                            Delete Category
+                          </button>
+                        </div>
                         <span className="text-[10px] bg-[#142224] text-[#809699] px-3 py-1 rounded-full font-bold uppercase tracking-wider">Category {catIdx + 1}</span>
                       </div>
 
@@ -709,7 +741,7 @@ export default function AdminDashboard() {
                       <div>
                         <label className="text-[10px] font-bold text-[#809699] uppercase tracking-wider block mb-2">Skills pill tags</label>
                         <div className="flex flex-wrap gap-2.5 mb-4">
-                          {category.skills.map((skill: string, skillIdx: number) => (
+                           {category.skills?.map((skill: string, skillIdx: number) => (
                             <div
                               key={skillIdx}
                               className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#060C0D] border border-[#142224] text-xs font-bold"
@@ -744,6 +776,7 @@ export default function AdminDashboard() {
                             onClick={() => {
                               if (!newSkill.val.trim()) return;
                               const updated = [...data.skills];
+                              if (!updated[catIdx].skills) updated[catIdx].skills = [];
                               updated[catIdx].skills.push(newSkill.val.trim());
                               setData({ ...data, skills: updated });
                               setNewSkill({ categoryIdx: 0, val: "" });
