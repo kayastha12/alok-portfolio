@@ -142,8 +142,8 @@ export default function AdminDashboard() {
     const formData = new FormData();
     formData.append("file", file);
     
-    // Maintain simple names
-    const safeName = file.name.replace(/\s+/g, "_");
+    // Force resume files to be named resume.pdf so they overwrite the old one
+    const safeName = fieldName === "resume" ? "resume.pdf" : file.name.replace(/\s+/g, "_");
     formData.append("filename", safeName);
 
     showToast("success", "Uploading file...");
@@ -186,7 +186,7 @@ export default function AdminDashboard() {
             )
           }));
         } else if (fieldName === "resume") {
-          showToast("success", "PDF Resume uploaded. Be sure to hit Save!");
+          showToast("success", "Resume uploaded successfully! Remote build will update the file in a moment.");
         }
         showToast("success", "Upload completed successfully!");
       } else {
